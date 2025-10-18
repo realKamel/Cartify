@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Web", "Cartify.Web\Cartify.Web.csproj", "{1497AF9C-09B9-432A-AE0D-8CBBE87724FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Domain", "Cartify.Domain\Cartify.Domain.csproj", "{6EE63703-ACAB-4FA0-9DE3-674DE7B2F1F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Services", "Cartify.Services\Cartify.Services.csproj", "{966977E2-3BDC-4AA1-A8DA-8325B8A205E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Services.Abstractions", "Cartify.Services.Abstractions\Cartify.Services.Abstractions.csproj", "{5A4B8D89-5762-43E1-A06A-E7980D8371E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Presentation", "Cartify.Presentation\Cartify.Presentation.csproj", "{D29FD41F-8A22-47C4-9263-FD8EF0BF8369}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Persistence", "Cartify.Persistence\Cartify.Persistence.csproj", "{3EFCF4A2-5E12-492A-999C-75861A185FB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Shared", "Cartify.Shared\Cartify.Shared.csproj", "{AA7BE56D-56BB-49D1-9763-12836BC0516F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1497AF9C-09B9-432A-AE0D-8CBBE87724FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1497AF9C-09B9-432A-AE0D-8CBBE87724FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1497AF9C-09B9-432A-AE0D-8CBBE87724FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1497AF9C-09B9-432A-AE0D-8CBBE87724FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE63703-ACAB-4FA0-9DE3-674DE7B2F1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE63703-ACAB-4FA0-9DE3-674DE7B2F1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE63703-ACAB-4FA0-9DE3-674DE7B2F1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE63703-ACAB-4FA0-9DE3-674DE7B2F1F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966977E2-3BDC-4AA1-A8DA-8325B8A205E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966977E2-3BDC-4AA1-A8DA-8325B8A205E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966977E2-3BDC-4AA1-A8DA-8325B8A205E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966977E2-3BDC-4AA1-A8DA-8325B8A205E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A4B8D89-5762-43E1-A06A-E7980D8371E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4B8D89-5762-43E1-A06A-E7980D8371E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4B8D89-5762-43E1-A06A-E7980D8371E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4B8D89-5762-43E1-A06A-E7980D8371E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D29FD41F-8A22-47C4-9263-FD8EF0BF8369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D29FD41F-8A22-47C4-9263-FD8EF0BF8369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D29FD41F-8A22-47C4-9263-FD8EF0BF8369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D29FD41F-8A22-47C4-9263-FD8EF0BF8369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFCF4A2-5E12-492A-999C-75861A185FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFCF4A2-5E12-492A-999C-75861A185FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFCF4A2-5E12-492A-999C-75861A185FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFCF4A2-5E12-492A-999C-75861A185FB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7BE56D-56BB-49D1-9763-12836BC0516F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7BE56D-56BB-49D1-9763-12836BC0516F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7BE56D-56BB-49D1-9763-12836BC0516F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7BE56D-56BB-49D1-9763-12836BC0516F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

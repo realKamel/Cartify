@@ -7,12 +7,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="DbContexts\" />
+      <Folder Include="AppData\Configurations\" />
+      <Folder Include="AppData\DataSeedingSource\" />
+      <Folder Include="AppData\Migrations\" />
       <Folder Include="Repositories\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Cartify.Services\Cartify.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+        <HintPath>..\..\..\.nuget\packages\microsoft.extensions.configuration.abstractions\8.0.0\lib\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

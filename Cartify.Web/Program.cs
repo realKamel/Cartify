@@ -1,3 +1,4 @@
+using Cartify.Persistence;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -33,6 +34,9 @@ public class Program
             // Add services to the DI container.
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+
+            //Persistence Layer Services
+            builder.Services.AddPersistenceServices(builder.Configuration);
             
             // HTTPS enforce
             builder.Services.AddHsts(options =>
@@ -43,6 +47,7 @@ public class Program
             });
 
             var app = builder.Build();
+            
             Log.Information("Web application built successfully.");
 
             // Configure the HTTP request pipeline.

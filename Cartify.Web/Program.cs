@@ -21,18 +21,26 @@ public class Program
                 .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
-            //full Serilog setup after startup
+            // Full Serilog setup after startup
             // no use for builder.Logging.ClearProviders(); and builder.Logging.AddSerilog(logger);
-            // here as UseSerilog handles that.
+            // as UseSerilog handles that.
             builder.Host.UseSerilog((context, services, configuration) =>
                 configuration
                     .ReadFrom.Configuration(context.Configuration)
                     .ReadFrom.Services(services)
             );
-            
-            // Add services to the container.
+
+            // Add services to the DI container.
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+            
+            // HTTPS enforce
+            builder.Services.AddHsts(options =>
+            {
+                options.Preload = true; // Indicates the site should be included in browser preload lists
+                options.IncludeSubDomains = true; // Applies the HSTS policy to all subdomains
+                options.MaxAge = TimeSpan.FromDays(365); // Browser should enforce HTTPS for 1 year
+            });
 
             var app = builder.Build();
             Log.Information("Web application built successfully.");
@@ -43,12 +51,14 @@ public class Program
                 app.MapOpenApi();
                 app.MapScalarApiReference();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseSerilogRequestLogging();
-
+            
             app.UseHttpsRedirection();
-
-            app.UseHsts();
 
             app.UseAuthorization();
 

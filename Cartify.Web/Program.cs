@@ -1,3 +1,4 @@
+using Cartify.Domain.Interfaces;
 using Cartify.Persistence;
 using Scalar.AspNetCore;
 using Serilog;
@@ -6,7 +7,7 @@ namespace Cartify.Web;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         //initial logging for application startup
         Log.Logger = new LoggerConfiguration()
@@ -37,7 +38,7 @@ public class Program
 
             //Persistence Layer Services
             builder.Services.AddPersistenceServices(builder.Configuration);
-            
+
             // HTTPS enforce
             builder.Services.AddHsts(options =>
             {
@@ -47,8 +48,29 @@ public class Program
             });
 
             var app = builder.Build();
-            
+
             Log.Information("Web application built successfully.");
+
+
+            Log.Information("Start DataSeeding");
+
+            using (var scope = app.Services.CreateScope())
+            {
+                try
+                {
+                    var dataSeeder = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
+
+                    // 1. MUST AWAIT the async call here
+                    await dataSeeder.SeedDataAsync();
+                }
+                catch (Exception ex)
+                {
+                    // 2. Add logging to catch any errors that occur during seeding
+                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
+            }
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -62,14 +84,16 @@ public class Program
             }
 
             app.UseSerilogRequestLogging();
-            
+
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
             app.MapControllers();
 
-            app.Run();
+            await app.RunAsync();
         }
         catch (Exception ex)
         {
@@ -77,7 +101,7 @@ public class Program
         }
         finally
         {
-            Log.CloseAndFlush();
+            await Log.CloseAndFlushAsync();
         }
     }
 }

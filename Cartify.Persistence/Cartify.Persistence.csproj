@@ -7,10 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="AppData\Configurations\" />
       <Folder Include="AppData\DataSeedingSource\" />
       <Folder Include="AppData\Migrations\" />
-      <Folder Include="Repositories\" />
     </ItemGroup>
 
     <ItemGroup>

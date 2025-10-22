@@ -1,0 +1,488 @@
+[
+  {
+    "name": "Canon",
+    "slug": "canon",
+    "image": "brands/canon/1678286824747.png",
+    "createdAt": "2023-03-08T14:47:04.912Z",
+    "updatedAt": "2023-03-08T14:47:04.912Z",
+    "id": 1,
+    "objectId": "64089fe824b25627a25315d1"
+  },
+  {
+    "name": "Dell",
+    "slug": "dell",
+    "image": "brands/dell/1678286767914.png",
+    "createdAt": "2023-03-08T14:46:07.963Z",
+    "updatedAt": "2023-03-08T14:46:07.963Z",
+    "id": 2,
+    "objectId": "64089faf24b25627a25315cd"
+  },
+  {
+    "name": "Lenovo",
+    "slug": "lenovo",
+    "image": "brands/lenovo/1678286730980.png",
+    "createdAt": "2023-03-08T14:45:31.041Z",
+    "updatedAt": "2023-03-08T14:45:31.041Z",
+    "id": 3,
+    "objectId": "64089f8b24b25627a25315ca"
+  },
+  {
+    "name": "SONY",
+    "slug": "sony",
+    "image": "brands/sony/1678286680638.png",
+    "createdAt": "2023-03-08T14:44:40.740Z",
+    "updatedAt": "2023-03-08T14:44:40.740Z",
+    "id": 4,
+    "objectId": "64089f5824b25627a25315c7"
+  },
+  {
+    "name": "Infinix",
+    "slug": "infinix",
+    "image": "brands/infinix/1678286620402.png",
+    "createdAt": "2023-03-08T14:43:40.601Z",
+    "updatedAt": "2023-03-08T14:43:40.601Z",
+    "id": 5,
+    "objectId": "64089f1c24b25627a25315c3"
+  },
+  {
+    "name": "Realme",
+    "slug": "realme",
+    "image": "brands/realme/1678286577463.png",
+    "createdAt": "2023-03-08T14:42:57.494Z",
+    "updatedAt": "2023-03-08T14:42:57.494Z",
+    "id": 6,
+    "objectId": "64089ef124b25627a25315c0"
+  },
+  {
+    "name": "HONOR",
+    "slug": "honor",
+    "image": "brands/honor/1678286539788.png",
+    "createdAt": "2023-03-08T14:42:19.819Z",
+    "updatedAt": "2023-03-08T14:42:19.819Z",
+    "id": 7,
+    "objectId": "64089ecb24b25627a25315bd"
+  },
+  {
+    "name": "Nokia",
+    "slug": "nokia",
+    "image": "brands/nokia/1678286502288.png",
+    "createdAt": "2023-03-08T14:41:42.322Z",
+    "updatedAt": "2023-03-08T14:41:42.322Z",
+    "id": 8,
+    "objectId": "64089ea624b25627a25315ba"
+  },
+  {
+    "name": "OPPO",
+    "slug": "oppo",
+    "image": "brands/oppo/1678286465856.png",
+    "createdAt": "2023-03-08T14:41:05.891Z",
+    "updatedAt": "2023-03-08T14:41:05.891Z",
+    "id": 9,
+    "objectId": "64089e8124b25627a25315b7"
+  },
+  {
+    "name": "Huawei",
+    "slug": "huawei",
+    "image": "brands/huawei/1678286421517.png",
+    "createdAt": "2023-03-08T14:40:21.568Z",
+    "updatedAt": "2023-03-08T14:40:21.568Z",
+    "id": 10,
+    "objectId": "64089e5524b25627a25315b4"
+  },
+  {
+    "name": "Apple",
+    "slug": "apple",
+    "image": "brands/apple/1678286391415.png",
+    "createdAt": "2023-03-08T14:39:51.467Z",
+    "updatedAt": "2023-03-08T14:39:51.467Z",
+    "id": 11,
+    "objectId": "64089e3724b25627a25315b1"
+  },
+  {
+    "name": "Xiaomi",
+    "slug": "xiaomi",
+    "image": "brands/xiaomi/1678286366797.png",
+    "createdAt": "2023-03-08T14:39:26.897Z",
+    "updatedAt": "2023-03-08T14:39:26.897Z",
+    "id": 12,
+    "objectId": "64089e1e24b25627a25315ae"
+  },
+  {
+    "name": "Samsung",
+    "slug": "samsung",
+    "image": "brands/samsung/1678286321029.png",
+    "createdAt": "2023-03-08T14:38:41.380Z",
+    "updatedAt": "2023-03-08T14:38:41.380Z",
+    "id": 13,
+    "objectId": "64089df124b25627a25315ab"
+  },
+  {
+    "name": "Jack & Jones",
+    "slug": "jack-and-jones",
+    "image": "brands/jack-and-jones/1678286281363.png",
+    "createdAt": "2023-03-08T14:38:01.423Z",
+    "updatedAt": "2023-03-08T14:38:01.423Z",
+    "id": 14,
+    "objectId": "64089dc924b25627a25315a8"
+  },
+  {
+    "name": "LC Waikiki",
+    "slug": "lc-waikiki",
+    "image": "brands/lc-waikiki/1678286238428.png",
+    "createdAt": "2023-03-08T14:37:18.790Z",
+    "updatedAt": "2023-03-08T14:37:18.790Z",
+    "id": 15,
+    "objectId": "64089d9e24b25627a25315a5"
+  },
+  {
+    "name": "Andora",
+    "slug": "andora",
+    "image": "brands/andora/1678286204060.png",
+    "createdAt": "2023-03-08T14:36:44.309Z",
+    "updatedAt": "2023-03-08T14:36:44.309Z",
+    "id": 16,
+    "objectId": "64089d7c24b25627a25315a2"
+  },
+  {
+    "name": "Puma",
+    "slug": "puma",
+    "image": "brands/puma/1678286172219.png",
+    "createdAt": "2023-03-08T14:36:12.269Z",
+    "updatedAt": "2023-03-08T14:36:12.269Z",
+    "id": 17,
+    "objectId": "64089d5c24b25627a253159f"
+  },
+  {
+    "name": "Skechers",
+    "slug": "skechers",
+    "image": "brands/skechers/1678286142113.png",
+    "createdAt": "2023-03-08T14:35:42.167Z",
+    "updatedAt": "2023-03-08T14:35:42.167Z",
+    "id": 18,
+    "objectId": "64089d3e24b25627a253159c"
+  },
+  {
+    "name": "Reserved",
+    "slug": "reserved",
+    "image": "brands/reserved/1678286099850.png",
+    "createdAt": "2023-03-08T14:34:59.890Z",
+    "updatedAt": "2023-03-08T14:34:59.890Z",
+    "id": 19,
+    "objectId": "64089d1324b25627a2531599"
+  },
+  {
+    "name": "Reebok",
+    "slug": "reebok",
+    "image": "brands/reebok/1678286058845.png",
+    "createdAt": "2023-03-08T14:34:19.466Z",
+    "updatedAt": "2023-03-08T14:34:19.466Z",
+    "id": 20,
+    "objectId": "64089ceb24b25627a2531596"
+  },
+  {
+    "name": "Adidas",
+    "slug": "adidas",
+    "image": "brands/adidas/1678285881943.png",
+    "createdAt": "2023-03-08T14:31:21.966Z",
+    "updatedAt": "2023-03-08T14:31:21.966Z",
+    "id": 21,
+    "objectId": "64089c3924b25627a2531593"
+  },
+  {
+    "name": "Nike",
+    "slug": "nike",
+    "image": "brands/nike/1678285837630.png",
+    "createdAt": "2023-03-08T14:30:37.794Z",
+    "updatedAt": "2023-03-08T14:30:37.794Z",
+    "id": 22,
+    "objectId": "64089c0d24b25627a2531590"
+  },
+  {
+    "name": "DeFacto",
+    "slug": "defacto",
+    "image": "brands/defacto/1678285758109.png",
+    "createdAt": "2023-03-08T14:29:18.205Z",
+    "updatedAt": "2023-03-08T14:29:18.205Z",
+    "id": 23,
+    "objectId": "64089bbe24b25627a253158b"
+  },
+  {
+    "name": "Beko",
+    "slug": "beko",
+    "image": "brands/beko/1678285724527.png",
+    "createdAt": "2023-03-08T14:28:44.636Z",
+    "updatedAt": "2023-03-08T14:28:44.636Z",
+    "id": 24,
+    "objectId": "64089b9c24b25627a2531588"
+  },
+  {
+    "name": "Kenwood",
+    "slug": "kenwood",
+    "image": "brands/kenwood/1678285698559.png",
+    "createdAt": "2023-03-08T14:28:18.615Z",
+    "updatedAt": "2023-03-08T14:28:18.615Z",
+    "id": 25,
+    "objectId": "64089b8224b25627a2531585"
+  },
+  {
+    "name": "Black + Decker",
+    "slug": "black-+-decker",
+    "image": "brands/black-+-decker/1678285650508.png",
+    "createdAt": "2023-03-08T14:27:30.557Z",
+    "updatedAt": "2023-03-08T14:27:30.557Z",
+    "id": 26,
+    "objectId": "64089b5224b25627a2531582"
+  },
+  {
+    "name": "Mienta",
+    "slug": "mienta",
+    "image": "brands/mienta/1678285592826.png",
+    "createdAt": "2023-03-08T14:26:32.996Z",
+    "updatedAt": "2023-03-08T14:26:32.996Z",
+    "id": 27,
+    "objectId": "64089b1824b25627a253157f"
+  },
+  {
+    "name": "Fresh",
+    "slug": "fresh",
+    "image": "brands/fresh/1678285558892.png",
+    "createdAt": "2023-03-08T14:25:58.960Z",
+    "updatedAt": "2023-03-08T14:25:58.960Z",
+    "id": 28,
+    "objectId": "64089af624b25627a253157c"
+  },
+  {
+    "name": "Philips",
+    "slug": "philips",
+    "image": "brands/philips/1678285517454.png",
+    "createdAt": "2023-03-08T14:25:17.483Z",
+    "updatedAt": "2023-03-08T14:25:17.483Z",
+    "id": 29,
+    "objectId": "64089acd24b25627a2531579"
+  },
+  {
+    "name": "Toshiba",
+    "slug": "toshiba",
+    "image": "brands/toshiba/1678285481289.png",
+    "createdAt": "2023-03-08T14:24:41.334Z",
+    "updatedAt": "2023-03-08T14:24:41.334Z",
+    "id": 30,
+    "objectId": "64089aa924b25627a2531576"
+  },
+  {
+    "name": "Tornado",
+    "slug": "tornado",
+    "image": "brands/tornado/1678285447068.png",
+    "createdAt": "2023-03-08T14:24:07.102Z",
+    "updatedAt": "2023-03-08T14:24:07.102Z",
+    "id": 31,
+    "objectId": "64089a8724b25627a2531573"
+  },
+  {
+    "name": "Braun",
+    "slug": "braun",
+    "image": "brands/braun/1678285367650.png",
+    "createdAt": "2023-03-08T14:22:47.709Z",
+    "updatedAt": "2023-03-08T14:22:47.709Z",
+    "id": 32,
+    "objectId": "64089a3724b25627a2531570"
+  },
+  {
+    "name": "Garnier",
+    "slug": "garnier",
+    "image": "brands/garnier/1678285324193.png",
+    "createdAt": "2023-03-08T14:22:04.241Z",
+    "updatedAt": "2023-03-08T14:22:04.241Z",
+    "id": 33,
+    "objectId": "64089a0c24b25627a253156d"
+  },
+  {
+    "name": "Essence",
+    "slug": "essence",
+    "image": "brands/essence/1678285277076.png",
+    "createdAt": "2023-03-08T14:21:17.103Z",
+    "updatedAt": "2023-03-08T14:21:17.103Z",
+    "id": 34,
+    "objectId": "640899dd24b25627a253156a"
+  },
+  {
+    "name": "Bourjois",
+    "slug": "bourjois",
+    "image": "brands/bourjois/1678285240940.png",
+    "createdAt": "2023-03-08T14:20:41.002Z",
+    "updatedAt": "2023-03-08T14:20:41.002Z",
+    "id": 35,
+    "objectId": "640899b824b25627a2531567"
+  },
+  {
+    "name": "Kemei",
+    "slug": "kemei",
+    "image": "brands/kemei/1678285201152.png",
+    "createdAt": "2023-03-08T14:20:01.189Z",
+    "updatedAt": "2023-03-08T14:20:01.189Z",
+    "id": 36,
+    "objectId": "6408999124b25627a2531564"
+  },
+  {
+    "name": "Carolina Herrera",
+    "slug": "carolina-herrera",
+    "image": "brands/carolina-herrera/1678285115409.png",
+    "createdAt": "2023-03-08T14:18:35.560Z",
+    "updatedAt": "2023-03-08T14:18:35.560Z",
+    "id": 37,
+    "objectId": "6408993b24b25627a2531561"
+  },
+  {
+    "name": "Calvin Klein",
+    "slug": "calvin-klein",
+    "image": "brands/calvin-klein/1678285065497.png",
+    "createdAt": "2023-03-08T14:17:45.633Z",
+    "updatedAt": "2023-03-08T14:17:45.633Z",
+    "id": 38,
+    "objectId": "6408990924b25627a253155e"
+  },
+  {
+    "name": "Loreal",
+    "slug": "loreal",
+    "image": "brands/loreal/1678285025559.png",
+    "createdAt": "2023-03-08T14:17:05.885Z",
+    "updatedAt": "2023-03-08T14:17:05.885Z",
+    "id": 39,
+    "objectId": "640898e124b25627a253155b"
+  },
+  {
+    "name": "Maybelline",
+    "slug": "maybelline",
+    "image": "brands/maybelline/1678284642946.png",
+    "createdAt": "2023-03-08T14:10:42.968Z",
+    "updatedAt": "2023-03-08T14:10:42.968Z",
+    "id": 40,
+    "objectId": "6408976224b25627a2531558"
+  },
+  {
+    "name": "Chicco",
+    "slug": "chicco",
+    "image": "brands/chicco/1678284283195.png",
+    "createdAt": "2023-03-08T14:04:43.247Z",
+    "updatedAt": "2023-03-08T14:04:43.247Z",
+    "id": 41,
+    "objectId": "640895fb24b25627a2531555"
+  },
+  {
+    "name": "Baby Joy",
+    "slug": "baby-joy",
+    "image": "brands/baby-joy/1678284236184.png",
+    "createdAt": "2023-03-08T14:03:56.459Z",
+    "updatedAt": "2023-03-08T14:03:56.459Z",
+    "id": 42,
+    "objectId": "640895cc24b25627a2531552"
+  },
+  {
+    "name": "Fine Baby",
+    "slug": "fine-baby",
+    "image": "brands/fine-baby/1678284203793.png",
+    "createdAt": "2023-03-08T14:03:23.924Z",
+    "updatedAt": "2023-03-08T14:03:23.924Z",
+    "id": 43,
+    "objectId": "640895ab24b25627a253154f"
+  },
+  {
+    "name": "Molfix",
+    "slug": "molfix",
+    "image": "brands/molfix/1678284168871.png",
+    "createdAt": "2023-03-08T14:02:48.918Z",
+    "updatedAt": "2023-03-08T14:02:48.918Z",
+    "id": 44,
+    "objectId": "6408958824b25627a253154c"
+  },
+  {
+    "name": "Pampers",
+    "slug": "pampers",
+    "image": "brands/pampers/1678284137154.png",
+    "createdAt": "2023-03-08T14:02:17.204Z",
+    "updatedAt": "2023-03-08T14:02:17.204Z",
+    "id": 45,
+    "objectId": "6408956924b25627a2531549"
+  },
+  {
+    "name": "Al Daha",
+    "slug": "al-daha",
+    "image": "brands/al-daha/1678284098297.png",
+    "createdAt": "2023-03-08T14:01:38.431Z",
+    "updatedAt": "2023-03-08T14:01:38.431Z",
+    "id": 46,
+    "objectId": "6408954224b25627a2531546"
+  },
+  {
+    "name": "Abu Auf",
+    "slug": "abu-auf",
+    "image": "brands/abu-auf/1678284058580.png",
+    "createdAt": "2023-03-08T14:00:58.630Z",
+    "updatedAt": "2023-03-08T14:00:58.630Z",
+    "id": 47,
+    "objectId": "6408951a24b25627a2531543"
+  },
+  {
+    "name": "Downy",
+    "slug": "downy",
+    "image": "brands/downy/1678284025223.png",
+    "createdAt": "2023-03-08T14:00:25.308Z",
+    "updatedAt": "2023-03-08T14:00:25.308Z",
+    "id": 48,
+    "objectId": "640894f924b25627a2531540"
+  },
+  {
+    "name": "Lipton",
+    "slug": "lipton",
+    "image": "brands/lipton/1678283996375.png",
+    "createdAt": "2023-03-08T13:59:56.424Z",
+    "updatedAt": "2023-03-08T13:59:56.424Z",
+    "id": 49,
+    "objectId": "640894dc24b25627a253153d"
+  },
+  {
+    "name": "Rihana",
+    "slug": "rihana",
+    "image": "brands/rihana/1678283933362.png",
+    "createdAt": "2023-03-08T13:58:53.394Z",
+    "updatedAt": "2023-03-08T13:58:53.394Z",
+    "id": 50,
+    "objectId": "6408949d24b25627a253153a"
+  },
+  {
+    "name": "Ariel",
+    "slug": "ariel",
+    "image": "brands/ariel/1678283887646.png",
+    "createdAt": "2023-03-08T13:58:07.683Z",
+    "updatedAt": "2023-03-08T13:58:07.683Z",
+    "id": 51,
+    "objectId": "6408946f24b25627a2531537"
+  },
+  {
+    "name": "Crystal",
+    "slug": "crystal",
+    "image": "brands/crystal/1678283848628.png",
+    "createdAt": "2023-03-08T13:57:28.666Z",
+    "updatedAt": "2023-03-08T13:57:28.666Z",
+    "id": 52,
+    "objectId": "6408944824b25627a2531534"
+  },
+  {
+    "name": "Persil",
+    "slug": "persil",
+    "image": "brands/persil/1678283815697.png",
+    "createdAt": "2023-03-08T13:56:55.716Z",
+    "updatedAt": "2023-03-08T13:56:55.716Z",
+    "id": 53,
+    "objectId": "6408942724b25627a2531531"
+  },
+  {
+    "name": "Oxi",
+    "slug": "oxi",
+    "image": "brands/oxi/1678283673220.png",
+    "createdAt": "2023-03-08T13:54:33.355Z",
+    "updatedAt": "2023-03-08T13:54:33.355Z",
+    "id": 54,
+    "objectId": "6408939924b25627a253152c"
+  }
+]

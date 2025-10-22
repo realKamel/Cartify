@@ -1,3 +1,4 @@
+using Cartify.Domain.Interfaces;
 using Cartify.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,8 @@ public static class PersistenceServicesRegistrations
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        
+        services.AddScoped<IDataSeeder, DataSeeder>();
         
         return services;
     }

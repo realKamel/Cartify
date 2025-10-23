@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using Cartify.Domain.Interfaces;
 using Cartify.Persistence;
 using Scalar.AspNetCore;
@@ -35,6 +36,16 @@ public class Program
             // Add services to the DI container.
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.ReportApiVersions = true;
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+            }).AddApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'V";
+                options.SubstituteApiVersionInUrl = true;
+            });
 
             //Persistence Layer Services
             builder.Services.AddPersistenceServices(builder.Configuration);

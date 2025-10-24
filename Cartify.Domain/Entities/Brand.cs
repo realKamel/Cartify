@@ -1,6 +1,6 @@
 using Cartify.Domain.Entities.JoinEntities;
 namespace Cartify.Domain.Entities;
-public class Brand : BaseEntity<long>
+public class Brand : BaseEntity<int>
 {
     public required string Name { get; set; }
     public required string Slug { get; set; }

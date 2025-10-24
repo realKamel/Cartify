@@ -4,10 +4,10 @@ namespace Cartify.Domain.Entities.JoinEntities;
 
 public class BrandCategory : IAuditing
 {
-    public long BrandId { get; set; }
+    public int BrandId { get; set; }
     public Brand Brand { get; set; }
 
-    public long CategoryId { get; set; }
+    public int CategoryId { get; set; }
     public Category Category { get; set; }
     
     //for Auditing

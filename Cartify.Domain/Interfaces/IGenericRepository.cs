@@ -10,4 +10,6 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     void Remove(TEntity entity);
     Task<TEntity?> GetByIdAsync(long id);
     IEnumerable<TEntity> GetAll(bool noTracking = true);
+    Task<TEntity?> GetByIdAsync(int id);
+    Task<IEnumerable<TEntity>> GetAllAsync(bool noTracking = true);
 }

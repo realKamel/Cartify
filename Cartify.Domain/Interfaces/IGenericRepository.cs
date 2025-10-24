@@ -8,8 +8,7 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     void Add(TEntity entity);
     void Update(TEntity entity);
     void Remove(TEntity entity);
-    Task<TEntity?> GetByIdAsync(long id);
-    IEnumerable<TEntity> GetAll(bool noTracking = true);
     Task<TEntity?> GetByIdAsync(int id);
     Task<IEnumerable<TEntity>> GetAllAsync(bool noTracking = true);
+    public Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity, TKey> specifications, bool noTracking = true);
 }

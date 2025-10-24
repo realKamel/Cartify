@@ -36,25 +36,13 @@ public sealed class DataSeeder(AppDbContext dbContext, ILogger<DataSeeder> logge
 
     public async Task SeedDataAsync()
     {
+        logger.LogInformation("Start DataSeeding");
         try
         {
             var pendingMigration = await dbContext.Database.GetPendingMigrationsAsync();
             if (pendingMigration.Any())
             {
                 await dbContext.Database.MigrateAsync();
-            }
-
-            if (!dbContext.Set<Product>().Any())
-            {
-                var productsSeed =
-                    await SeedItemsFromJson<Product>(
-                        @"../Cartify.Persistence/AppData/DataSeedingSource/products.json");
-                if (productsSeed is null)
-                {
-                    throw new Exception("No products were found in seeding files");
-                }
-
-                await dbContext.Set<Product>().AddRangeAsync(productsSeed);
             }
 
             if (!dbContext.Set<Brand>().Any())
@@ -81,6 +69,19 @@ public sealed class DataSeeder(AppDbContext dbContext, ILogger<DataSeeder> logge
                 }
 
                 await dbContext.Set<Category>().AddRangeAsync(categoriesSeed);
+            }
+
+            if (!dbContext.Set<Product>().Any())
+            {
+                var productsSeed =
+                    await SeedItemsFromJson<Product>(
+                        @"../Cartify.Persistence/AppData/DataSeedingSource/products.json");
+                if (productsSeed is null)
+                {
+                    throw new Exception("No products were found in seeding files");
+                }
+
+                await dbContext.Set<Product>().AddRangeAsync(productsSeed);
             }
 
             await dbContext.SaveChangesAsync();

@@ -24,11 +24,11 @@ namespace Cartify.Persistence.AppData.Migrations
 
             modelBuilder.Entity("Cartify.Domain.Entities.Brand", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
@@ -67,11 +67,11 @@ namespace Cartify.Persistence.AppData.Migrations
 
             modelBuilder.Entity("Cartify.Domain.Entities.Category", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
@@ -110,11 +110,11 @@ namespace Cartify.Persistence.AppData.Migrations
 
             modelBuilder.Entity("Cartify.Domain.Entities.JoinEntities.BrandCategory", b =>
                 {
-                    b.Property<long>("BrandId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("BrandId")
+                        .HasColumnType("integer");
 
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
@@ -143,17 +143,17 @@ namespace Cartify.Persistence.AppData.Migrations
 
             modelBuilder.Entity("Cartify.Domain.Entities.Product", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<long>("BrandId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("BrandId")
+                        .HasColumnType("integer");
 
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("timestamp with time zone");
@@ -186,7 +186,7 @@ namespace Cartify.Persistence.AppData.Migrations
                     b.Property<double>("RatingsAverage")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("RatingsCount")
+                    b.Property<int>("RatingsQuantity")
                         .HasColumnType("integer");
 
                     b.Property<string>("Slug")

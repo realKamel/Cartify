@@ -11,9 +11,9 @@ public class UnitOfWork(AppDbContext dbContext)
 {
     private readonly Dictionary<string, object> _repositories = [];
 
-    public async Task<int> SaveChangesAsync()
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
     {
-        return await dbContext.SaveChangesAsync();
+        return await dbContext.SaveChangesAsync(cancellationToken);
     }
 
     public IGenericRepository<TEntity, TKey> GetOrCreateRepository<TEntity, TKey>()
@@ -21,15 +21,15 @@ public class UnitOfWork(AppDbContext dbContext)
     {
         var typeEntityName = typeof(TEntity).Name;
 
-        if (_repositories.TryGetValue(typeEntityName, out var value))
+        if (_repositories.TryGetValue(typeEntityName, out var repo))
         {
-            return value as IGenericRepository<TEntity, TKey>;
+            return (IGenericRepository<TEntity, TKey>)repo;
         }
         else
         {
             _repositories[typeEntityName] = new GenericRepository<TEntity, TKey>(dbContext);
 
-            return _repositories[typeEntityName] as IGenericRepository<TEntity, TKey>;
+            return (IGenericRepository<TEntity, TKey>)_repositories[typeEntityName];
         }
     }
 }

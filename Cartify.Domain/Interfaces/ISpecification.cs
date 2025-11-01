@@ -11,8 +11,9 @@ public interface ISpecification<TEntity, TKey> where TEntity : BaseEntity<TKey> 
     ICollection<Expression<Func<TEntity, object>>>? RelatedDataIncludes { get; }
     Expression<Func<TEntity, object>>? OrderByExpression { get; }
     Expression<Func<TEntity, object>>? OrderByDescExpression { get; }
+    protected void AddRelatedDataInclude(Expression<Func<TEntity, object>> expression);
+    protected void AddOrderBy(Expression<Func<TEntity, object>> expression);
+    protected void AddOrderByDesc(Expression<Func<TEntity, object>> expression);
 
-    public void AddRelatedDataInclude(Expression<Func<TEntity, object>> expression);
-    public void AddOrderBy(Expression<Func<TEntity, object>> expression);
-    public void AddOrderDescBy(Expression<Func<TEntity, object>> expression);
+
 }

@@ -1,6 +1,8 @@
 using Asp.Versioning;
 using Cartify.Domain.Interfaces;
 using Cartify.Persistence;
+using Cartify.Services;
+using Cartify.Web.WebAppHelpers;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -23,6 +25,7 @@ public class Program
                 .AddJsonFile("appsettings.json", optional: false)
                 .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+
 
             // Full Serilog setup after startup
             // no use for builder.Logging.ClearProviders(); and builder.Logging.AddSerilog(logger);
@@ -50,6 +53,14 @@ public class Program
             //Persistence Layer Services
             builder.Services.AddPersistenceServices(builder.Configuration);
 
+            //Service Layer Services
+            builder.Services.AddServiceLayerServices();
+
+            //Global Exception Handling
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+            builder.Services.AddScoped<UseEndpointChecker>();
+            builder.Services.AddProblemDetails();
+
             // HTTPS enforce
             builder.Services.AddHsts(options =>
             {
@@ -62,41 +73,25 @@ public class Program
 
             Log.Information("Web application built successfully.");
 
-
-            Log.Information("Start DataSeeding");
-
-            using (var scope = app.Services.CreateScope())
-            {
-                try
-                {
-                    var dataSeeder = scope.ServiceProvider.GetRequiredService<IDataSeeder>();
-
-                    // 1. MUST AWAIT the async call here
-                    await dataSeeder.SeedDataAsync();
-                }
-                catch (Exception ex)
-                {
-                    // 2. Add logging to catch any errors that occur during seeding
-                    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred while seeding the database.");
-                }
-            }
-
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
                 app.MapScalarApiReference();
+                app.UseDeveloperExceptionPage();
             }
             else
             {
                 app.UseHsts();
+                app.UseExceptionHandler();
+                app.UseMiddleware<UseEndpointChecker>();
             }
 
             app.UseSerilogRequestLogging();
 
             app.UseStaticFiles();
+
+            app.UseRouting();
 
             app.UseHttpsRedirection();
 

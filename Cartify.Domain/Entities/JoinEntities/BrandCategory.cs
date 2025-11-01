@@ -9,7 +9,7 @@ public class BrandCategory : IAuditing
 
     public int CategoryId { get; set; }
     public Category Category { get; set; }
-    
+
     //for Auditing
     public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
     public Guid CreatedBy { get; set; }

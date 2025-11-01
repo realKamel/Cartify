@@ -6,9 +6,12 @@ public class Category : BaseEntity<int>
 {
     public required string Name { get; set; }
     public required string Slug { get; set; }
-    public required string Image { get; set; }
+    public required string? Image { get; set; }
 
-    public ICollection<Product> Products { get; set; }
+    //Product Navigation Property
+    public ICollection<Product>? Products { get; set; }
 
-    public ICollection<BrandCategory> BrandCategories { get; set; }
+    
+    //Brands Navigation Property
+    public ICollection<BrandCategory> Brand { get; set; }
 }

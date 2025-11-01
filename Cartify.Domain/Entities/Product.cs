@@ -5,8 +5,8 @@ public class Product : BaseEntity<int>
     public required string Title { get; set; }
     public required string Slug { get; set; }
     public string? Description { get; set; }
+    public string? ImageCover { get; set; }
     public ICollection<string>? Images { get; set; }
-    public required string ImageCover { get; set; }
     public int Sold { get; set; }
     public double RatingsAverage { get; set; }
     public int RatingsQuantity { get; set; }

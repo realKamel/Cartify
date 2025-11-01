@@ -20,5 +20,13 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasOne(x => x.Category)
             .WithMany(x => x.Products)
             .HasForeignKey(x => x.CategoryId);
+            
+        builder.HasData(ProductsSeed().Result ?? []);
+    }
+
+    private static async Task<IEnumerable<Product>?> ProductsSeed()
+    {
+        return await DataSeeder.SeedItemsFromJson<Product>(
+            @"../Cartify.Persistence/AppData/DataSeedingSource/products.json");
     }
 }

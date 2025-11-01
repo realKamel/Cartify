@@ -13,5 +13,5 @@ public class Category : BaseEntity<int>
 
     
     //Brands Navigation Property
-    public ICollection<BrandCategory> Brand { get; set; }
+    public ICollection<BrandCategory> BrandCategories { get; set; }
 }

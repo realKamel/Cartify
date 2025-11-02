@@ -34,6 +34,12 @@ public static class QueryBuilder
             query = query.OrderByDescending(specification.OrderByDescExpression);
         }
 
+        if (specification.IsPaginated)
+        {
+            query = query.Skip(specification.Skip);
+            query = query.Take(specification.Take);
+        }
+
         return query;
     }
 }

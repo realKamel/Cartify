@@ -14,6 +14,7 @@ public interface ISpecification<TEntity, TKey> where TEntity : BaseEntity<TKey> 
     protected void AddRelatedDataInclude(Expression<Func<TEntity, object>> expression);
     protected void AddOrderBy(Expression<Func<TEntity, object>> expression);
     protected void AddOrderByDesc(Expression<Func<TEntity, object>> expression);
-
-
+    int Skip { get; }
+    int Take { get; }
+    public bool IsPaginated { get; }
 }

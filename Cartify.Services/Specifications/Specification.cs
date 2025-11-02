@@ -14,7 +14,7 @@ public abstract class Specification<TEntity, TKey> : ISpecification<TEntity, TKe
     public Expression<Func<TEntity, object>>? OrderByDescExpression { get; private set; }
 
 
-    public void AddCriteria(Expression<Func<TEntity, bool>> criteria)
+    protected Specification(Expression<Func<TEntity, bool>> criteria)
     {
         Criteria = criteria;
     }
@@ -29,4 +29,17 @@ public abstract class Specification<TEntity, TKey> : ISpecification<TEntity, TKe
 
 
     public void AddOrderByDesc(Expression<Func<TEntity, object>> expression) => OrderByDescExpression ??= expression;
+
+    public int Take { get; private set; }
+
+    public int Skip { get; private set; }
+
+    public bool IsPaginated { get; set; }
+
+    protected void ApplyPagination(int pageIndex, int pageSize)
+    {
+        IsPaginated = true;
+        Take = pageSize;
+        Skip = (pageIndex - 1) * pageSize;
+    }
 }

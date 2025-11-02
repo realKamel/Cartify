@@ -27,6 +27,12 @@ public class GenericRepository<TEntity, TKey>(AppDbContext dbContext)
         return await result.ToListAsync(cancellationToken);
     }
 
+    public async Task<int> CountAsync(ISpecification<TEntity, TKey>? specifications)
+    {
+        return await QueryBuilder
+            .CreateSpecificationQuery(dbContext.Set<TEntity>(), specifications).CountAsync();
+    }
+
     public void Add(TEntity entity)
     {
         dbContext.Set<TEntity>().Add(entity);

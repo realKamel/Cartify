@@ -13,4 +13,6 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     public Task<IReadOnlyList<TEntity>>
         GetAllAsync(ISpecification<TEntity, TKey>? specifications, bool noTracking = true,
             CancellationToken cancellationToken = default);
+
+    public Task<int> CountAsync(ISpecification<TEntity, TKey>? specifications);
 }

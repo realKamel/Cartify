@@ -106,11 +106,31 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
             throw new ProductNotFoundException();
         }
 
-        var updatedProduct = productDto.ToEntity(Guid.NewGuid());
+        var updatedProduct = productDto.ToEntity(Guid.NewGuid()); //This Should Change to commit the actual user
+
+        var imagesPath = Path.GetDirectoryName(updatedProduct.ImageCover!);
+
+        CoreModuleHelper.RemoveImagesFromStorage(updatedProduct.ImageCover!);
+
+        updatedProduct.ImageCover =
+            await CoreModuleHelper
+                .SaveCoverImageAndGeneratePathAsync(
+                    productDto.ImageCover,
+                    updatedProduct.Slug,
+                    imagesPath!,
+                    "products",
+                    cancellationToken
+                );
+
+
         if (productDto.Images?.Count > 0)
         {
-            updatedProduct.Images = await CoreModuleHelper.SaveMultiImageAndGeneratePathAsync(productDto.Images,
-                updatedProduct.Slug, updatedProduct.ImageCover!, "products", cancellationToken);
+            updatedProduct.Images =
+                await CoreModuleHelper
+                    .SaveMultiImageAndGeneratePathAsync(productDto.Images,
+                        updatedProduct.Slug,
+                        updatedProduct.ImageCover!,
+                        "products", cancellationToken);
         }
 
         _productRepo.Update(updatedProduct);

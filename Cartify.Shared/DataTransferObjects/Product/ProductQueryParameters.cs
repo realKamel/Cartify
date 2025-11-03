@@ -2,7 +2,7 @@ using Cartify.Shared.DataTransferObjects;
 
 namespace Cartify.Shared;
 
-public record QueryParameters
+public record ProductQueryParameters
 {
     private const int MaxLimit = 40;
 

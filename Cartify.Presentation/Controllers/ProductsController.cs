@@ -9,7 +9,7 @@ public class ProductsController(IProductServices services) : V1BaseController
 {
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetAllProductAsync(
-        [FromQuery] QueryParameters? query,
+        [FromQuery] ProductQueryParameters? query,
         CancellationToken cancellationToken)
     {
         var result = await services.GetAllProductAsync(query, cancellationToken);

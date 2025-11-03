@@ -6,7 +6,7 @@ namespace Cartify.Services.Abstractions;
 
 public interface IProductServices
 {
-    public Task<PagedList<ProductResponseDto>> GetAllProductAsync(QueryParameters? query,
+    public Task<PagedList<ProductResponseDto>> GetAllProductAsync(ProductQueryParameters? query,
         CancellationToken cancellationToken = default);
 
     public Task<ProductResponseDto> GetProductByIdAsync(int id, CancellationToken cancellationToken = default);

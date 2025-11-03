@@ -1,12 +1,13 @@
 using System.Linq.Expressions;
 using Cartify.Domain.Entities;
+using Cartify.Services.Specifications;
 using Cartify.Shared;
 
-namespace Cartify.Services.Specifications;
+namespace Cartify.Services.Features.ProductFeatures.Specifications;
 
 public class ProductSpecification : Specification<Product, int>
 {
-    public ProductSpecification(QueryParameters query)
+    public ProductSpecification(ProductQueryParameters query)
         : base(p =>
             (string.IsNullOrWhiteSpace(query.Keyword) || p.Title.ToLower().Contains(query.Keyword))
             &&

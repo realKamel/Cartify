@@ -1,5 +1,5 @@
 using Cartify.Services.Abstractions;
-using Cartify.Services.Features.ProductModule;
+using Cartify.Services.Features.ProductFeatures;
 
 namespace Cartify.Services;
 

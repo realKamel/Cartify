@@ -1,7 +1,7 @@
-using System.Linq.Expressions;
 using Cartify.Domain.Entities;
+using Cartify.Services.Specifications;
 
-namespace Cartify.Services.Specifications;
+namespace Cartify.Services.Features.ProductFeatures.Specifications;
 
 public class ProductWithIdSpecification : Specification<Product, int>
 {

@@ -2,22 +2,22 @@ using Cartify.Domain.Entities;
 using Cartify.Domain.Exceptions;
 using Cartify.Domain.Interfaces;
 using Cartify.Services.Abstractions;
+using Cartify.Services.Features.ProductFeatures.Specifications;
 using Cartify.Services.Helper;
-using Cartify.Services.Specifications;
 using Cartify.Shared;
 using Cartify.Shared.DataTransferObjects;
 using Cartify.Shared.DataTransferObjects.Product;
 using Microsoft.Extensions.Logging;
 
 
-namespace Cartify.Services.Features.ProductModule;
+namespace Cartify.Services.Features.ProductFeatures;
 
 public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> logger) : IProductServices
 {
     private readonly IGenericRepository<Product, int> _productRepo = unitOfWork
         .GetOrCreateRepository<Product, int>();
 
-    public async Task<PagedList<ProductResponseDto>> GetAllProductAsync(QueryParameters? query,
+    public async Task<PagedList<ProductResponseDto>> GetAllProductAsync(ProductQueryParameters? query,
         CancellationToken cancellationToken)
     {
         var orderBy = query?.OrderBy;
@@ -32,7 +32,7 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
         var productRepoResult = await _productRepo
             .GetAllAsync(specification, cancellationToken: cancellationToken);
 
-        var count = await _productRepo.CountAsync(new ProductCountSpecification(query));
+        var count = await _productRepo.CountAsync(new ProductCountSpecification(query), cancellationToken);
 
         var result = productRepoResult.Select(p => p.ToProductResponseDto()).ToList();
 

@@ -2,7 +2,7 @@ using Cartify.Domain.Entities;
 using Cartify.Services.Helper;
 using Cartify.Shared.DataTransferObjects.Product;
 
-namespace Cartify.Services.Features.ProductModule;
+namespace Cartify.Services.Features.ProductFeatures;
 
 public static class ProductModuleHelper
 {

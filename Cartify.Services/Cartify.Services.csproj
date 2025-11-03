@@ -7,13 +7,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Mapping Profiles\" />
-      <Folder Include="Specifications\" />
+      <Folder Include="MappingProfiles\" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Cartify.Domain\Cartify.Domain.csproj" />
       <ProjectReference Include="..\Cartify.Services.Abstractions\Cartify.Services.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>..\..\..\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\8.0.2\lib\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="15.0.1" />
     </ItemGroup>
 
 </Project>

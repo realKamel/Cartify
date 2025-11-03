@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Music",
+    "slug": "music",
+    "image": "categories/music/1681511964020.jpeg",
+    "createdAtUtc": "2023-04-14T22:39:24.365Z",
+    "updatedAtUtc": "2023-04-14T22:39:24.365Z",
+    "id": 1,
+    "objectId": "6439d61c0049ad0b52b90051"
+  },
+  {
+    "name": "Men's Fashion",
+    "slug": "men-fashion",
+    "image": "categories/men-fashion/1681511865180.jpeg",
+    "createdAtUtc": "2023-04-14T22:37:45.627Z",
+    "updatedAtUtc": "2023-04-14T22:37:45.627Z",
+    "id": 2,
+    "objectId": "6439d5b90049ad0b52b90048"
+  },
+  {
+    "name": "Women's Fashion",
+    "slug": "women-fashion",
+    "image": "categories/women-fashion/1681511818071.jpeg",
+    "createdAtUtc": "2023-04-14T22:36:58.118Z",
+    "updatedAtUtc": "2023-04-14T22:36:58.118Z",
+    "id": 3,
+    "objectId": "6439d58a0049ad0b52b9003f"
+  },
+  {
+    "name": "SuperMarket",
+    "slug": "supermarket",
+    "image": "categories/supermarket/1681511452254.png",
+    "createdAtUtc": "2023-04-14T22:30:52.311Z",
+    "updatedAtUtc": "2023-04-14T22:30:52.311Z",
+    "id": 4,
+    "objectId": "6439d41c67d9aa4ca97064d5"
+  },
+  {
+    "name": "Baby & Toys",
+    "slug": "baby-and-toys",
+    "image": "categories/baby-and-toys/1681511427130.png",
+    "createdAtUtc": "2023-04-14T22:30:27.166Z",
+    "updatedAtUtc": "2023-04-14T22:30:27.166Z",
+    "id": 5,
+    "objectId": "6439d40367d9aa4ca97064cc"
+  },
+  {
+    "name": "Home",
+    "slug": "home",
+    "image": "categories/home/1681511392672.png",
+    "createdAtUtc": "2023-04-14T22:29:52.763Z",
+    "updatedAtUtc": "2023-04-14T22:29:52.763Z",
+    "id": 6,
+    "objectId": "6439d3e067d9aa4ca97064c3"
+  },
+  {
+    "name": "Books",
+    "slug": "books",
+    "image": "categories/books/1681511368164.png",
+    "createdAtUtc": "2023-04-14T22:29:28.200Z",
+    "updatedAtUtc": "2023-04-14T22:29:28.200Z",
+    "id": 7,
+    "objectId": "6439d3c867d9aa4ca97064ba"
+  },
+  {
+    "name": "Beauty & Health",
+    "slug": "beauty-and-health",
+    "image": "categories/beauty-and-health/1681511179514.png",
+    "createdAtUtc": "2023-04-14T22:26:19.587Z",
+    "updatedAtUtc": "2023-04-14T22:26:19.587Z",
+    "id": 8,
+    "objectId": "6439d30b67d9aa4ca97064b1"
+  },
+  {
+    "name": "Mobiles",
+    "slug": "mobiles",
+    "image": "categories/mobiles/1681511156008.png",
+    "createdAtUtc": "2023-04-14T22:25:56.071Z",
+    "updatedAtUtc": "2023-04-14T22:25:56.071Z",
+    "id": 9,
+    "objectId": "6439d2f467d9aa4ca97064a8"
+  },
+  {
+    "name": "Electronics",
+    "slug": "electronics",
+    "image": "categories/electronics/1681511121316.png",
+    "createdAtUtc": "2023-04-14T22:25:21.783Z",
+    "updatedAtUtc": "2023-04-14T22:25:21.783Z",
+    "id": 10,
+    "objectId": "6439d2d167d9aa4ca970649f"
+  }
+]

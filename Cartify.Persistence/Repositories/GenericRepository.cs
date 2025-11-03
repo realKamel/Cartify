@@ -35,10 +35,13 @@ public class GenericRepository<TEntity, TKey>(AppDbContext dbContext)
         return await result.ToListAsync(cancellationToken);
     }
 
-    public async Task<int> CountAsync(ISpecification<TEntity, TKey> specifications)
+    public async Task<int> CountAsync(ISpecification<TEntity, TKey> specifications,
+        CancellationToken cancellationToken = default)
     {
         return await QueryBuilder
-            .CreateSpecificationQuery(dbContext.Set<TEntity>(), specifications).AsNoTracking().CountAsync();
+            .CreateSpecificationQuery(dbContext.Set<TEntity>(), specifications)
+            .AsNoTracking()
+            .CountAsync(cancellationToken);
     }
 
     public void Add(TEntity entity)

@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Persistence", "Cart
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Shared", "Cartify.Shared\Cartify.Shared.csproj", "{AA7BE56D-56BB-49D1-9763-12836BC0516F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Tests", "Cartify.Tests\Cartify.Tests.csproj", "{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{AA7BE56D-56BB-49D1-9763-12836BC0516F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA7BE56D-56BB-49D1-9763-12836BC0516F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA7BE56D-56BB-49D1-9763-12836BC0516F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

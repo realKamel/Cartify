@@ -1,4 +1,4 @@
-using Cartify.Shared.DataTransferObjects.JoinDtos;
+// using Cartify.Shared.DataTransferObjects.JoinDtos;
 using Cartify.Shared.DataTransferObjects.Product;
 
 namespace Cartify.Shared.DataTransferObjects.Category;
@@ -13,5 +13,5 @@ public record CategoryResponseDto
     public DateTime CreatedAtUtc { get; set; }
 
     public ICollection<ProductResponseDto>? Products { get; set; }
-    public ICollection<BrandCategoryResponseDto>? Brands { get; set; }
+    // public ICollection<BrandCategoryResponseDto>? Brands { get; set; }
 }

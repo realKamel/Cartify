@@ -9,10 +9,18 @@ namespace Cartify.Persistence.Repositories;
 public class GenericRepository<TEntity, TKey>(AppDbContext dbContext)
     : IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TKey> where TKey : INumber<TKey>
 {
+    public async Task<TEntity?> GetByIdAsync(ISpecification<TEntity, TKey> specifications,
+        CancellationToken cancellationToken = default)
+    {
+        var result = dbContext.Set<TEntity>().AsQueryable();
+        var query = QueryBuilder.CreateSpecificationQuery(result, specifications).AsNoTracking();
+        return await query.FirstOrDefaultAsync(cancellationToken);
+    }
+
     public async Task<IReadOnlyList<TEntity>> GetAllAsync(ISpecification<TEntity, TKey>? specifications,
         bool noTracking = true, CancellationToken cancellationToken = default)
     {
-        IQueryable<TEntity> result = dbContext.Set<TEntity>();
+        var result = dbContext.Set<TEntity>().AsQueryable();
 
         if (specifications is not null)
         {
@@ -30,7 +38,7 @@ public class GenericRepository<TEntity, TKey>(AppDbContext dbContext)
     public async Task<int> CountAsync(ISpecification<TEntity, TKey> specifications)
     {
         return await QueryBuilder
-            .CreateSpecificationQuery(dbContext.Set<TEntity>(), specifications).CountAsync();
+            .CreateSpecificationQuery(dbContext.Set<TEntity>(), specifications).AsNoTracking().CountAsync();
     }
 
     public void Add(TEntity entity)
@@ -48,7 +56,7 @@ public class GenericRepository<TEntity, TKey>(AppDbContext dbContext)
         dbContext.Set<TEntity>().Remove(entity);
     }
 
-    public async Task<TEntity?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await dbContext.Set<TEntity>().FindAsync([id], cancellationToken);
     }

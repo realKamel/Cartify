@@ -10,6 +10,9 @@ public interface IGenericRepository<TEntity, TKey> where TEntity : BaseEntity<TK
     void Remove(TEntity entity);
     Task<TEntity?> GetByIdAsync(int id, CancellationToken cancellationToken = default);
 
+    Task<TEntity?> GetByIdAsync(ISpecification<TEntity, TKey> specifications,
+        CancellationToken cancellationToken = default);
+
     public Task<IReadOnlyList<TEntity>>
         GetAllAsync(ISpecification<TEntity, TKey>? specifications, bool noTracking = true,
             CancellationToken cancellationToken = default);

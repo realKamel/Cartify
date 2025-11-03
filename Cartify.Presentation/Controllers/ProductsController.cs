@@ -1,5 +1,6 @@
 using Cartify.Services.Abstractions;
 using Cartify.Shared;
+using Cartify.Shared.DataTransferObjects;
 using Cartify.Shared.DataTransferObjects.Product;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +9,7 @@ namespace Cartify.Presentation.Controllers;
 public class ProductsController(IProductServices services) : V1BaseController
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProductResponseDto>>> GetAllProductAsync(
+    public async Task<ActionResult<PagedList<ProductResponseDto>>> GetAllProductAsync(
         [FromQuery] ProductQueryParameters? query,
         CancellationToken cancellationToken)
     {
@@ -17,7 +18,7 @@ public class ProductsController(IProductServices services) : V1BaseController
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<ProductResponseDto>> GetProductByIdAsync(int id,
+    public async Task<ActionResult<ProductResponseDto>> GetProductWithId(int id,
         CancellationToken cancellationToken)
     {
         var result = await services.GetProductByIdAsync(id, cancellationToken);
@@ -31,12 +32,11 @@ public class ProductsController(IProductServices services) : V1BaseController
     {
         var result = await services.AddProductAsync(product,
             cancellationToken);
-        return CreatedAtAction(nameof(ProductsController.GetProductByIdAsync),
-            new { id = result.Id }, result);
+        return CreatedAtAction(nameof(GetProductWithId), new { id = result.Id }, result);
     }
 
 
-    [HttpPut]
+    [HttpPut("{id:int}")]
     public async Task<ActionResult> UpdateProductAsync(int id,
         CreateOrUpdateProductRequestDto productRequestDto, CancellationToken cancellationToken)
     {

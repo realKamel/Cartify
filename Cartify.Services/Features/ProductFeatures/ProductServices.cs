@@ -40,7 +40,7 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
         {
             Data = result,
             Page = query.Page ?? 1,
-            Limit = query.Limit,
+            Limit = Math.Min(query.Limit, count),
             Total = count
         };
 

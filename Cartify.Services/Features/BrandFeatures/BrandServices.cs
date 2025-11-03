@@ -26,7 +26,7 @@ public class BrandServices(IUnitOfWork unitOfWork) : IBrandServices
         var list = new PagedList<BrandResponseDto>
         {
             Data = brandDtoList,
-            Limit = query.Limit,
+            Limit = Math.Min(query.Limit, count),
             Page = query.Page.Value,
             Total = count
         };

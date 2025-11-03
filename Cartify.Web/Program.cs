@@ -51,7 +51,7 @@ public class Program
             });
 
             //Persistence Layer Services
-            builder.Services.AddPersistenceServices(builder.Configuration);
+            builder.Services.AddPersistenceServices(builder.Configuration, builder.Environment);
 
             //Service Layer Services
             builder.Services.AddServiceLayerServices();

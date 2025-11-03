@@ -1,4 +1,5 @@
 using Cartify.Services.Abstractions;
+using Cartify.Services.Features.BrandFeatures;
 using Cartify.Services.Features.ProductFeatures;
 
 namespace Cartify.Services;
@@ -10,5 +11,6 @@ public static class AppServicesLayerRegistration
     public static void AddServiceLayerServices(this IServiceCollection services)
     {
         services.AddScoped<IProductServices, ProductServices>();
+        services.AddScoped<IBrandServices, BrandServices>();
     }
 }

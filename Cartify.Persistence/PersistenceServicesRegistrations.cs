@@ -9,7 +9,7 @@ namespace Cartify.Persistence;
 
 public static class PersistenceServicesRegistrations
 {
-    public static IServiceCollection AddPersistenceServices(this IServiceCollection services,
+    public static void AddPersistenceServices(this IServiceCollection services,
         IConfiguration configuration)
     {
         //dbContexts configuration
@@ -20,7 +20,5 @@ public static class PersistenceServicesRegistrations
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        return services;
     }
 }

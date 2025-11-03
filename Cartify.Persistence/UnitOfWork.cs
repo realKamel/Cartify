@@ -21,15 +21,12 @@ public class UnitOfWork(AppDbContext dbContext)
     {
         var typeEntityName = typeof(TEntity).Name;
 
-        if (_repositories.TryGetValue(typeEntityName, out var repo))
+        if (_repositories.TryGetValue(typeEntityName, out object? repo))
         {
             return (IGenericRepository<TEntity, TKey>)repo;
         }
-        else
-        {
-            _repositories[typeEntityName] = new GenericRepository<TEntity, TKey>(dbContext);
 
-            return (IGenericRepository<TEntity, TKey>)_repositories[typeEntityName];
-        }
+        _repositories[typeof(TEntity).Name] = new GenericRepository<TEntity, TKey>(dbContext);
+        return (IGenericRepository<TEntity, TKey>)_repositories[typeof(TEntity).Name];
     }
 }

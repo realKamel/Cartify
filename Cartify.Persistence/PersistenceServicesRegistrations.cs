@@ -1,3 +1,4 @@
+using Cartify.Domain.Entities;
 using Cartify.Domain.Interfaces;
 using Cartify.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,23 @@ public static class PersistenceServicesRegistrations
             }
         });
 
+        services.AddDbContext<IdentityContext>(options =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString("IdentityConnection"));
+        });
+
+        services
+            .AddIdentityCore<AppUser>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = false;
+            })
+            .AddRoles<AppRole>()
+            .AddEntityFrameworkStores<IdentityContext>();
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IIdentityDataSeeder, IdentityDataSeeder>();
     }
 }

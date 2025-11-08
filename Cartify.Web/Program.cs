@@ -3,7 +3,11 @@ using Cartify.Domain.Interfaces;
 using Cartify.Persistence;
 using Cartify.Services;
 using Cartify.Web.WebAppHelpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
+//using Scalar.AspNetCore;
 using Serilog;
 
 namespace Cartify.Web;
@@ -78,6 +82,8 @@ public class Program
             {
                 app.MapOpenApi();
                 app.MapScalarApiReference();
+                app.UseSwagger();
+                app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -95,9 +101,22 @@ public class Program
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.MapControllers();
+
+
+            if (app.Environment.IsDevelopment())
+            {
+                using (var scope = app.Services.CreateScope())
+                {
+                    var identitySeed = scope.ServiceProvider.GetRequiredService<IIdentityDataSeeder>();
+                    await identitySeed.SeedRolesAsync();
+                    await identitySeed.SeedUsersAsync();
+                }
+            }
 
             await app.RunAsync();
         }

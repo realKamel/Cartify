@@ -58,7 +58,7 @@ public class Program
             builder.Services.AddPersistenceServices(builder.Configuration, builder.Environment);
 
             //Service Layer Services
-            builder.Services.AddServiceLayerServices();
+            builder.Services.AddServiceLayerServices(builder.Configuration);
 
             //Global Exception Handling
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>();

@@ -63,7 +63,51 @@ public class Program
             //Global Exception Handling
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
             builder.Services.AddScoped<UseEndpointChecker>();
-            builder.Services.AddProblemDetails();
+            builder.Services.AddProblemDetails(options =>
+            {
+                options.CustomizeProblemDetails = context =>
+                {
+                    context.ProblemDetails.Extensions.Add("timestamp", DateTime.UtcNow);
+                    context.ProblemDetails.Extensions.Add("instance",
+                        $"{context.HttpContext.Request.Method} {context.HttpContext.Request.Path}");
+                };
+            });
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration.GetSection("JwtConfigurationOptions:Issuer").Value,
+                    ValidAudience = builder.Configuration.GetSection("JwtConfigurationOptions:Audience").Value,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(builder
+                            .Configuration
+                            .GetSection("JwtConfigurationOptions:SecurityKey").Value!))
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        context.Request.Cookies.TryGetValue("AccessToken", out var accessToken);
+                        if (!string.IsNullOrEmpty(accessToken))
+                        {
+                            context.Token = accessToken;
+                        }
+
+                        return Task.CompletedTask;
+                    }
+                };
+            });
+            builder.Services.AddAuthorization();
 
             // HTTPS enforce
             builder.Services.AddHsts(options =>
@@ -73,7 +117,10 @@ public class Program
                 options.MaxAge = TimeSpan.FromDays(365); // Browser should enforce HTTPS for 1 year
             });
 
+
+            //
             var app = builder.Build();
+
 
             Log.Information("Web application built successfully.");
 

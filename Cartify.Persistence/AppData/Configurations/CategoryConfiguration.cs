@@ -14,13 +14,5 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .HasMany(p => p.BrandCategories)
             .WithOne(bc => bc.Category)
             .HasForeignKey(bc => bc.CategoryId);
-
-        builder.HasData(CategoriesSeed().Result ?? []);
-    }
-
-    private static async Task<IEnumerable<Category>?> CategoriesSeed()
-    {
-        return await DataSeeder.SeedItemsFromJson<Category>(
-            @"../Cartify.Persistence/AppData/DataSeedingSource/categories.json");
     }
 }

@@ -1,13 +1,15 @@
-namespace Cartify.Domain.Interfaces;
+﻿namespace Cartify.Domain.Interfaces;
 
-public interface IAuditing
+public interface IAuditing<TKey>
 {
-    public DateTime CreatedAtUtc { get; set; }
-    public Guid CreatedBy { get; set; }
+	DateTimeOffset CreatedAtUtc { get; set; }
+	TKey CreatedBy { get; set; }
 
-    public DateTime? UpdatedAtUtc { get; set; }
-    public Guid? UpdatedBy { get; set; }
+	DateTimeOffset? UpdatedAtUtc { get; set; }
+	TKey? UpdatedBy { get; set; }
 
-    public DateTime? DeletedAtUtc { get; set; }
-    public Guid? DeletedBy { get; set; }
+	DateTimeOffset? DeletedAtUtc { get; set; }
+	TKey? DeletedBy { get; set; }
+
+	bool IsDeleted => DeletedAtUtc.HasValue;
 }

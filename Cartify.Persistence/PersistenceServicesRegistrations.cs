@@ -1,4 +1,4 @@
-using Cartify.Domain.Entities;
+﻿using Cartify.Domain.Entities;
 using Cartify.Domain.Interfaces;
 using Cartify.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
@@ -11,13 +11,20 @@ namespace Cartify.Persistence;
 
 public static class PersistenceServicesRegistrations
 {
-    public static void AddPersistenceServices(this IServiceCollection services,
-        IConfiguration configuration, IHostEnvironment environment)
+    public static void AddPersistenceServices(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
     {
+        services.AddHttpContextAccessor();
+        services.AddScoped<AuditInterceptor>();
+
         //dbContexts configuration
-        services.AddDbContext<AppDbContext>(options =>
+        services.AddDbContext<AppDbContext>((services, options) =>
         {
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            var auditInterceptor = services.GetRequiredService<AuditInterceptor>();
+
+            options
+                .UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+                .AddInterceptors(auditInterceptor);
+
             if (environment.IsDevelopment())
             {
                 options.LogTo(Console.WriteLine, LogLevel.Information);
@@ -43,5 +50,6 @@ public static class PersistenceServicesRegistrations
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IIdentityDataSeeder, IdentityDataSeeder>();
+        services.AddScoped<IAppDataSeeder, AppDataSeeder>();
     }
 }

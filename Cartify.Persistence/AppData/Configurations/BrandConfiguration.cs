@@ -14,13 +14,5 @@ public class BrandConfiguration : IEntityTypeConfiguration<Brand>
             .HasMany(p => p.BrandCategories)
             .WithOne(bc => bc.Brand)
             .HasForeignKey(bc => bc.BrandId);
-
-        builder.HasData(BrandsSeed().Result ?? []);
-    }
-
-    private static async Task<IEnumerable<Brand>?> BrandsSeed()
-    {
-        return await DataSeeder.SeedItemsFromJson<Brand>(
-            @"../Cartify.Persistence/AppData/DataSeedingSource/brands.json");
     }
 }

@@ -13,7 +13,7 @@ public class BrandCategoryConfiguration : IEntityTypeConfiguration<BrandCategory
         builder.HasOne(x => x.Brand)
             .WithMany(x => x.BrandCategories)
             .HasForeignKey(x => x.BrandId);
-        
+
         builder.HasOne(x => x.Category)
             .WithMany(x => x.BrandCategories)
             .HasForeignKey(x => x.CategoryId);

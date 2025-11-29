@@ -1,9 +1,9 @@
 namespace Cartify.Shared.DataTransferObjects.Product;
 
-public class ProductCategoryResponseDto
+public record ProductCategoryResponseDto
 {
     public int Id { get; init; }
-    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
-    public DateTime? UpdatedAtUtc { get; set; }
+    public DateTimeOffset CreatedAtUtc { get; set; }
+    public DateTimeOffset? UpdatedAtUtc { get; set; }
     public required string Image { get; set; }
 }

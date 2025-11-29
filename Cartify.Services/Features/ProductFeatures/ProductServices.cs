@@ -1,4 +1,4 @@
-using Cartify.Domain.Entities;
+﻿using Cartify.Domain.Entities;
 using Cartify.Domain.Exceptions;
 using Cartify.Domain.Interfaces;
 using Cartify.Services.Abstractions;
@@ -17,7 +17,7 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
     private readonly IGenericRepository<Product, int> _productRepo = unitOfWork
         .GetOrCreateRepository<Product, int>();
 
-    public async Task<PagedList<ProductResponseDto>> GetAllProductAsync(ProductQueryParameters? query,
+    public async Task<PagedList<ProductResponseDto>> GetAllProductAsync(ProductQueryParameters query,
         CancellationToken cancellationToken)
     {
         var orderBy = query?.OrderBy;
@@ -27,20 +27,20 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
             throw new ValidationException("Can't Have the same field to sort ascending and descending");
         }
 
-        var specification = new ProductSpecification(query);
+        var specification = new ProductSpecification(query!);
 
         var productRepoResult = await _productRepo
             .GetAllAsync(specification, cancellationToken: cancellationToken);
 
-        var count = await _productRepo.CountAsync(new ProductCountSpecification(query), cancellationToken);
+        var count = await _productRepo.CountAsync(new ProductCountSpecification(query!), cancellationToken);
 
         var result = productRepoResult.Select(p => p.ToProductResponseDto()).ToList();
 
         var list = new PagedList<ProductResponseDto>
         {
             Data = result,
-            Page = query.Page ?? 1,
-            Limit = Math.Min(query.Limit, count),
+            Page = query?.Page ?? 1,
+            Limit = Math.Min(query!.Limit, count),
             Total = count
         };
 
@@ -62,7 +62,7 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
     public async Task<ProductResponseDto> AddProductAsync(CreateOrUpdateProductRequestDto productDto,
         CancellationToken cancellationToken)
     {
-        var productEntity = productDto.ToEntity(Guid.NewGuid());
+        var productEntity = productDto.ToEntity();
 
         _productRepo.Add(productEntity);
 
@@ -72,13 +72,13 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
             await CoreModuleHelper.SaveCoverImageAndGeneratePathAsync(productDto.ImageCover,
                 productEntity.Slug,
                 pathGuid,
-                "products",
+                ProductCatalogImagesDirectories.ProductImagesDirectory,
                 cancellationToken);
 
         if (productDto.Images is not null && productDto.Images.Count > 0)
         {
             productEntity.Images = await CoreModuleHelper.SaveMultiImageAndGeneratePathAsync(productDto.Images,
-                productEntity.Slug, pathGuid, "products", cancellationToken);
+                productEntity.Slug, pathGuid, ProductCatalogImagesDirectories.ProductImagesDirectory, cancellationToken);
         }
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -106,7 +106,8 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
             throw new ProductNotFoundException();
         }
 
-        var updatedProduct = productDto.ToEntity(Guid.NewGuid()); //This Should Change to commit the actual user
+
+        var updatedProduct = productDto.ToEntity();
 
         var imagesPath = Path.GetDirectoryName(updatedProduct.ImageCover!);
 
@@ -118,7 +119,7 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
                     productDto.ImageCover,
                     updatedProduct.Slug,
                     imagesPath!,
-                    "products",
+                    ProductCatalogImagesDirectories.ProductImagesDirectory,
                     cancellationToken
                 );
 
@@ -130,7 +131,7 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
                     .SaveMultiImageAndGeneratePathAsync(productDto.Images,
                         updatedProduct.Slug,
                         updatedProduct.ImageCover!,
-                        "products", cancellationToken);
+                        ProductCatalogImagesDirectories.ProductImagesDirectory, cancellationToken);
         }
 
         _productRepo.Update(updatedProduct);

@@ -1,6 +1,4 @@
-using Cartify.Shared.DataTransferObjects;
-
-namespace Cartify.Shared;
+namespace Cartify.Shared.DataTransferObjects.Product;
 
 public record ProductQueryParameters
 {
@@ -8,7 +6,9 @@ public record ProductQueryParameters
 
     private int _limit = 30;
     public string? Keyword { get; set; }
+
     public OrderByEnum? OrderBy { get; set; }
+
     public OrderByEnum? OrderByDesc { get; set; }
 
     public int Limit

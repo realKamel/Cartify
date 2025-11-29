@@ -1,6 +1,6 @@
 namespace Cartify.Shared.DataTransferObjects.Brand;
 
-public class BrandQueryParameters
+public record BrandQueryParameters
 {
     private const int MaxLimit = 40;
 

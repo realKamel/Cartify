@@ -1,4 +1,4 @@
-using Cartify.Domain.Entities;
+﻿using Cartify.Domain.Entities;
 using Cartify.Services.Helper;
 using Cartify.Shared.DataTransferObjects.Product;
 
@@ -42,7 +42,7 @@ public static class ProductModuleHelper
         };
     }
 
-    public static Product ToEntity(this CreateOrUpdateProductRequestDto productDto, Guid userId)
+    public static Product ToEntity(this CreateOrUpdateProductRequestDto productDto)
     {
         return new Product
         {
@@ -51,10 +51,6 @@ public static class ProductModuleHelper
             Description = productDto.Description,
             Quantity = productDto.Quantity,
             Price = productDto.Price,
-            CreatedAtUtc = DateTime.UtcNow,
-            CreatedBy = userId,
-            ImageCover = null,
-            Images = null,
             BrandId = productDto.BrandId,
             CategoryId = productDto.CategoryId,
         };

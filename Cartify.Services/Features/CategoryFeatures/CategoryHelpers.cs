@@ -1,4 +1,4 @@
-using Cartify.Domain.Entities;
+﻿using Cartify.Domain.Entities;
 using Cartify.Services.Helper;
 using Cartify.Shared.DataTransferObjects.Category;
 
@@ -19,15 +19,12 @@ public static class CategoryHelpers
         };
     }
 
-    public static Category ToEntity(this CreateOrUpdatedCategoryRequestDto categoryRequestDto, Guid userId)
+    public static Category ToEntity(this CreateOrUpdatedCategoryRequestDto categoryRequestDto)
     {
         return new Category
         {
             Name = categoryRequestDto.Name,
-            Image = null,
             Slug = CoreModuleHelper.GenerateSlug(categoryRequestDto.Name),
-            CreatedAtUtc = DateTime.UtcNow,
-            CreatedBy = userId,
 
             //Todo
             BrandCategories = [] //Just For Testing

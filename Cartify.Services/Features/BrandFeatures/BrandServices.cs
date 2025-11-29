@@ -48,7 +48,7 @@ public class BrandServices(IUnitOfWork unitOfWork) : IBrandServices
     public async Task<BrandResponseDto> AddBrandAsync(CreateOrUpdateBrandRequestDto brandDto,
         CancellationToken cancellationToken = default)
     {
-        var entity = brandDto.ToEntity(Guid.NewGuid());
+        var entity = brandDto.ToEntity();
         var guidPath = Guid.NewGuid().ToString();
         Repository.Add(entity);
         entity.Image =
@@ -79,8 +79,6 @@ public class BrandServices(IUnitOfWork unitOfWork) : IBrandServices
                 Imagepath!,
                 "brands",
                 cancellationToken);
-        result.UpdatedAtUtc = DateTime.UtcNow;
-        result.UpdatedBy = Guid.NewGuid();
 
         Repository.Update(result);
     }

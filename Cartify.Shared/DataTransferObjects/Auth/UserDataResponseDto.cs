@@ -8,7 +8,7 @@ public record UserDataResponseDto
     public required string Email { get; set; }
     public string? PhoneNumber { get; set; }
     public bool PhoneNumberConfirmed { get; set; }
-    public DateTime RefreshTokenExpiryTime { get; set; }
+    public DateTimeOffset RefreshTokenExpiryTime { get; set; }
     public bool EmailConfirmed { get; set; }
     public bool TwoFactorEnabled { get; set; }
     public DateTimeOffset? LockoutEnd { get; set; }

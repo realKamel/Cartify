@@ -1,6 +1,7 @@
 using Cartify.Domain.Entities;
 using Cartify.Services.Specifications;
 using Cartify.Shared;
+using Cartify.Shared.DataTransferObjects.Product;
 
 namespace Cartify.Services.Features.ProductFeatures.Specifications;
 

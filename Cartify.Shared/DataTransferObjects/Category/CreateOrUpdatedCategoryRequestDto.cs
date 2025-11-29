@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Cartify.Shared.DataTransferObjects.Category;
 
-public class CreateOrUpdatedCategoryRequestDto
+public record CreateOrUpdatedCategoryRequestDto
 {
     [Required]
     [StringLength(200, MinimumLength = 3, ErrorMessage = "Brand name MUST be between 3 and 200 characters")]

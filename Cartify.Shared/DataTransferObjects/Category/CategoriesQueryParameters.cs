@@ -1,6 +1,6 @@
 namespace Cartify.Shared.DataTransferObjects.Category;
 
-public class CategoriesQueryParameters
+public record CategoriesQueryParameters
 {
     private const int MaxLimit = 40;
 

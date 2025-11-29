@@ -9,8 +9,8 @@ public record CategoryResponseDto
     public required string Name { get; set; }
     public required string Slug { get; set; }
     public required string Image { get; set; }
-    public DateTime? UpdatedAtUtc { get; set; }
-    public DateTime CreatedAtUtc { get; set; }
+    public DateTimeOffset? UpdatedAtUtc { get; set; }
+    public DateTimeOffset CreatedAtUtc { get; set; }
 
     public ICollection<ProductResponseDto>? Products { get; set; }
     // public ICollection<BrandCategoryResponseDto>? Brands { get; set; }

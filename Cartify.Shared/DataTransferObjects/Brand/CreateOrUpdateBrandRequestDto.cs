@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Http;
 
 namespace Cartify.Shared.DataTransferObjects.Brand;
 
-public class CreateOrUpdateBrandRequestDto
+public record CreateOrUpdateBrandRequestDto
 {
     [Required]
     [StringLength(200, MinimumLength = 3, ErrorMessage = "Brand name MUST be between 3 and 200 characters")]
     public required string Name { get; set; }
 
-    [Required]
-    public required IFormFile Image { get; set; }
+    [Required] public required IFormFile Image { get; set; }
 
     //TODO I Should implement method to update the related Data
 

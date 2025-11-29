@@ -25,6 +25,7 @@ public class Program
 			builder.Configuration
 				.AddJsonFile("appsettings.json", optional: false)
 				.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+				.AddUserSecrets<Program>()
 				.AddEnvironmentVariables();
 
 			// Full Serilog setup after startup

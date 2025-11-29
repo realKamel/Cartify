@@ -21,5 +21,6 @@ public static class AppServicesLayerRegistration
             .Bind(configuration.GetSection(nameof(JwtConfigurationOptions)));
         services.AddScoped<ITokenServices, TokenServices>();
         services.AddScoped<IUserServices, UserServices>();
-    }
+		services.AddScoped<ICurrentHttpContext, CurrentHttpContext>();
+	}
 }

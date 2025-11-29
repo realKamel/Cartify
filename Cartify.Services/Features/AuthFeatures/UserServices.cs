@@ -15,6 +15,7 @@ namespace Cartify.Services.Features.AuthFeatures;
 public class UserServices(
     UserManager<AppUser> userManager,
     ITokenServices tokenServices,
+    ICurrentHttpContext context,
     IOptions<JwtConfigurationOptions> jwtOptions,
     ILogger<UserServices> logger) : IUserServices
 {
@@ -45,8 +46,7 @@ public class UserServices(
         await userManager.DeleteAsync(appUserExists);
     }
 
-    public async Task<LoggedInUserResponseDto> LogIn(UserLogInRequestDto requestDto,
-        HttpContext context, CancellationToken cancellationToken = default)
+    public async Task<LoggedInUserResponseDto> LogIn(UserLogInRequestDto requestDto, CancellationToken cancellationToken = default)
     {
         var user = await userManager.FindByEmailAsync(requestDto.Email);
 
@@ -82,12 +82,12 @@ public class UserServices(
 
         var userData = user.ToSignedInUserDto(roles.ToList());
 
-        tokenServices.StoreTokensInsideCookies(accessToken, user.RefreshToken, context);
+        tokenServices.StoreTokensInsideCookies(accessToken, user.RefreshToken);
 
         return userData;
     }
 
-    public async Task RegisterUser(UserRegistrationRequestDto userDto, HttpContext context,
+    public async Task RegisterUser(UserRegistrationRequestDto userDto,
         CancellationToken cancellationToken = default)
     {
         var isUserEmailExist = await userManager.FindByEmailAsync(userDto.Email);
@@ -124,15 +124,16 @@ public class UserServices(
                 new Claim(ClaimTypes.Role, "Customer")
             ]);
 
-        tokenServices.StoreTokensInsideCookies(accessToken, user.RefreshToken, context);
+        tokenServices.StoreTokensInsideCookies(accessToken, user.RefreshToken);
     }
 
-    public async Task UpdateUserPersonalInfo(HttpContext context, UserUpdatePersonalDataRequestDto userDto,
+    public async Task UpdateUserPersonalInfo(UserUpdatePersonalDataRequestDto userDto,
         CancellationToken cancellationToken = default)
     {
-        context.Request.Cookies.TryGetValue("AccessToken", out var accessToken);
+        var accessToken = "";
+        context?.Request?.Cookies.TryGetValue("AccessToken", out accessToken);
 
-        if (accessToken is null)
+        if (string.IsNullOrEmpty(accessToken))
         {
             throw new ValidationException("User  is not found");
         }
@@ -158,12 +159,13 @@ public class UserServices(
         }
     }
 
-    public async Task UpdateUserPassword(HttpContext context, LoggedInUserUpdatePasswordRequestDto userDto,
+    public async Task UpdateUserPassword(LoggedInUserUpdatePasswordRequestDto userDto,
         CancellationToken cancellationToken = default)
     {
-        context.Request.Cookies.TryGetValue("AccessToken", out var accessToken);
+        var accessToken = "";
+        context?.Request?.Cookies.TryGetValue("AccessToken", out accessToken);
 
-        if (accessToken is null)
+        if (string.IsNullOrEmpty(accessToken))
         {
             throw new ValidationException("User  is not found");
         }
@@ -184,18 +186,19 @@ public class UserServices(
         }
     }
 
-    public async Task RefreshAccessToken(HttpContext context)
+    public async Task RefreshAccessToken()
     {
-        context.Request.Cookies.TryGetValue("AccessToken", out var accessToken);
-        context.Request.Cookies.TryGetValue("RefreshToken", out var refreshToken);
+        string? accessToken = "", refreshToken = "";
 
-        if (accessToken is null || refreshToken is null)
+        context?.Request?.Cookies.TryGetValue("AccessToken", out accessToken);
+        context?.Request?.Cookies.TryGetValue("RefreshToken", out refreshToken);
+
+        if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(refreshToken))
         {
             throw new UnauthorizedAccessException();
         }
 
-        var principal =
-            tokenServices.GetPrincipalFromExpiredAccessToken(accessToken);
+        var principal = tokenServices.GetPrincipalFromExpiredAccessToken(accessToken);
 
         var userId = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
@@ -221,18 +224,19 @@ public class UserServices(
         user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(jwtOptions.Value.RefreshTokenExpirationInDays);
         await userManager.UpdateAsync(user);
 
-        tokenServices.StoreTokensInsideCookies(newAccessToken, user.RefreshToken, context);
+        tokenServices.StoreTokensInsideCookies(newAccessToken, user.RefreshToken);
     }
 
-    public async Task Logout(HttpContext context)
+    public async Task Logout()
     {
-        ClearAuthCookies(context);
+        ClearAuthCookies();
 
         // Try to get user ID from access token if present and valid
 
-        string? userId = null;
-        if (context.Request.Cookies.TryGetValue("AccessToken", out var accessToken) &&
-            !string.IsNullOrEmpty(accessToken))
+        string? userId = null, accessToken = "";
+        if (
+            context?.Request?.Cookies.TryGetValue("AccessToken", out accessToken) ?? false
+            && !string.IsNullOrEmpty(accessToken))
         {
             try
             {
@@ -258,7 +262,7 @@ public class UserServices(
         }
     }
 
-    private static void ClearAuthCookies(HttpContext context)
+    private void ClearAuthCookies()
     {
         var cookieOptions = new CookieOptions
         {
@@ -268,18 +272,13 @@ public class UserServices(
             Domain = null
         };
 
-        context.Response.Cookies.Delete("AccessToken", cookieOptions);
-        context.Response.Cookies.Delete("RefreshToken", cookieOptions);
+        context?.Response?.Cookies.Delete("AccessToken", cookieOptions);
+        context?.Response?.Cookies.Delete("RefreshToken", cookieOptions);
     }
 
     public async Task<UserDataResponseDto> GetUserById(string userId, CancellationToken cancellationToken = default)
     {
-        var user = await userManager.FindByIdAsync(userId);
-        if (user is null)
-        {
-            throw new UserNotFoundException("User is not found");
-        }
-
+        var user = await userManager.FindByIdAsync(userId) ?? throw new UserNotFoundException("User is not found");
         var userDto = user.ToUserDataResponseDto();
         return userDto;
     }

@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11205.157 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Web", "Cartify.Web\Cartify.Web.csproj", "{1497AF9C-09B9-432A-AE0D-8CBBE87724FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Domain", "Cartify.Domain\Cartify.Domain.csproj", "{6EE63703-ACAB-4FA0-9DE3-674DE7B2F1F0}"
@@ -15,6 +18,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Shared", "Cartify.Shared\Cartify.Shared.csproj", "{AA7BE56D-56BB-49D1-9763-12836BC0516F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cartify.Tests", "Cartify.Tests\Cartify.Tests.csproj", "{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F773508B-75AA-4688-9AB7-9418C8B2FC79}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,5 +62,11 @@ Global
 		{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C227D45C-D33E-4A3A-999F-27FE46C5B7E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89E40E58-5F95-4883-B137-103044E540DF}
 	EndGlobalSection
 EndGlobal

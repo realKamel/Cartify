@@ -2,6 +2,7 @@
 using Cartify.Shared.DataTransferObjects;
 using Cartify.Shared.DataTransferObjects.Brand;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cartify.Presentation.Controllers;
@@ -25,9 +26,9 @@ public class BrandsController(IBrandServices services) : V1BaseController
 	/// <response code="400">If the query parameters are invalid</response>
 	/// <response code="500">If there was an internal server error</response>
 	[HttpGet]
-	[ProducesResponseType(typeof(PagedList<BrandResponseDto>), 200)]
-	[ProducesResponseType(typeof(ProblemDetails), 400)]
-	[ProducesResponseType(typeof(ProblemDetails), 500)]
+	[ProducesResponseType<PagedList<BrandResponseDto>>(StatusCodes.Status200OK)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
 	public async Task<ActionResult<PagedList<BrandResponseDto>>> GetBrands(
 		[FromQuery] BrandQueryParameters? queryParameters,
 		CancellationToken cancellationToken)
@@ -46,9 +47,10 @@ public class BrandsController(IBrandServices services) : V1BaseController
 	/// <response code="404">If the brand with the specified ID was not found</response>
 	/// <response code="400">If the ID format is invalid</response>
 	[HttpGet("{id:int}")]
-	[ProducesResponseType(typeof(BrandResponseDto), 200)]
-	[ProducesResponseType(typeof(ProblemDetails), 404)]
-	[ProducesResponseType(typeof(ProblemDetails), 400)]
+	[ProducesResponseType<BrandResponseDto>(StatusCodes.Status200OK)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
 	public async Task<ActionResult<BrandResponseDto>> GetBrandById(
 		[FromRoute] int id,
 		CancellationToken cancellationToken)
@@ -70,11 +72,12 @@ public class BrandsController(IBrandServices services) : V1BaseController
 	/// <response code="409">If a brand with the same name already exists</response>
 	[HttpPost]
 	[Authorize(Roles = "Admin")]
-	[ProducesResponseType(typeof(BrandResponseDto), 201)]
-	[ProducesResponseType(typeof(ProblemDetails), 400)]
-	[ProducesResponseType(typeof(ProblemDetails), 401)]
-	[ProducesResponseType(typeof(ProblemDetails), 403)]
-	[ProducesResponseType(typeof(ProblemDetails), 409)]
+	[ProducesResponseType<BrandResponseDto>(StatusCodes.Status201Created)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status401Unauthorized)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status403Forbidden)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status409Conflict)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
 	public async Task<ActionResult<BrandResponseDto>> CreateOrUpdateBrand(
 		[FromBody] CreateOrUpdateBrandRequestDto requestDto,
 		CancellationToken cancellationToken)
@@ -97,18 +100,19 @@ public class BrandsController(IBrandServices services) : V1BaseController
 	/// <response code="404">If the brand with specified ID was not found</response>
 	[HttpPut("{id:int}")]
 	[Authorize(Roles = "Admin")]
-	[ProducesResponseType(200)]
-	[ProducesResponseType(typeof(ProblemDetails), 400)]
-	[ProducesResponseType(typeof(ProblemDetails), 401)]
-	[ProducesResponseType(typeof(ProblemDetails), 403)]
-	[ProducesResponseType(typeof(ProblemDetails), 404)]
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status401Unauthorized)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status403Forbidden)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
 	public async Task<ActionResult> UpdateBrandAsync(
 		[FromRoute] int id,
-		[FromBody] CreateOrUpdateBrandRequestDto requestDto,
+		[FromForm] CreateOrUpdateBrandRequestDto requestDto,
 		CancellationToken cancellationToken)
 	{
 		await services.UpdateBrand(id, requestDto, cancellationToken);
-		return Ok();
+		return NoContent();
 	}
 
 	/// <summary>
@@ -124,11 +128,13 @@ public class BrandsController(IBrandServices services) : V1BaseController
 	/// <response code="409">If the brand cannot be deleted due to existing references</response>
 	[HttpDelete("{id:int}")]
 	[Authorize(Roles = "Admin")]
-	[ProducesResponseType(204)]
-	[ProducesResponseType(typeof(ProblemDetails), 401)]
-	[ProducesResponseType(typeof(ProblemDetails), 403)]
-	[ProducesResponseType(typeof(ProblemDetails), 404)]
-	[ProducesResponseType(typeof(ProblemDetails), 409)]
+	[ProducesResponseType(StatusCodes.Status204NoContent)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status409Conflict)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status401Unauthorized)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status403Forbidden)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status404NotFound)]
+	[ProducesResponseType<ProblemDetails>(StatusCodes.Status500InternalServerError)]
 	public async Task<ActionResult> DeleteBrand(
 		[FromRoute] int id,
 		CancellationToken cancellationToken)

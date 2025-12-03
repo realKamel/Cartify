@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cartify.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251128135848_init")]
+    [Migration("20251203132831_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -147,7 +147,7 @@ namespace Cartify.Persistence.Migrations
                     b.ToTable("BrandCategory");
                 });
 
-            modelBuilder.Entity("Cartify.Domain.Entities.JoinEntities.WishlistProduct", b =>
+            modelBuilder.Entity("Cartify.Domain.Entities.JoinEntities.WishlistedProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,16 +177,16 @@ namespace Cartify.Persistence.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("text");
 
-                    b.Property<int>("UserWishlistId")
+                    b.Property<int>("WishlistId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("UserWishlistId");
+                    b.HasIndex("WishlistId");
 
-                    b.ToTable("WishlistProduct");
+                    b.ToTable("WishlistedProduct");
                 });
 
             modelBuilder.Entity("Cartify.Domain.Entities.Product", b =>
@@ -264,7 +264,7 @@ namespace Cartify.Persistence.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("Cartify.Domain.Entities.UserRelatedEntities.UserAddress", b =>
+            modelBuilder.Entity("Cartify.Domain.Entities.UserRelatedEntities.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -313,10 +313,10 @@ namespace Cartify.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserAddress");
+                    b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("Cartify.Domain.Entities.UserRelatedEntities.UserWishlist", b =>
+            modelBuilder.Entity("Cartify.Domain.Entities.UserRelatedEntities.Wishlist", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -352,7 +352,7 @@ namespace Cartify.Persistence.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserWishlist");
+                    b.ToTable("Wishlist");
                 });
 
             modelBuilder.Entity("Cartify.Domain.Entities.JoinEntities.BrandCategory", b =>
@@ -374,23 +374,23 @@ namespace Cartify.Persistence.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Cartify.Domain.Entities.JoinEntities.WishlistProduct", b =>
+            modelBuilder.Entity("Cartify.Domain.Entities.JoinEntities.WishlistedProduct", b =>
                 {
                     b.HasOne("Cartify.Domain.Entities.Product", "Product")
-                        .WithMany("WishlistProducts")
+                        .WithMany("WishlistedProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Cartify.Domain.Entities.UserRelatedEntities.UserWishlist", "UserWishlist")
-                        .WithMany("WishlistProducts")
-                        .HasForeignKey("UserWishlistId")
+                    b.HasOne("Cartify.Domain.Entities.UserRelatedEntities.Wishlist", "Wishlist")
+                        .WithMany("Products")
+                        .HasForeignKey("WishlistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
 
-                    b.Navigation("UserWishlist");
+                    b.Navigation("Wishlist");
                 });
 
             modelBuilder.Entity("Cartify.Domain.Entities.Product", b =>
@@ -428,12 +428,12 @@ namespace Cartify.Persistence.Migrations
 
             modelBuilder.Entity("Cartify.Domain.Entities.Product", b =>
                 {
-                    b.Navigation("WishlistProducts");
+                    b.Navigation("WishlistedProducts");
                 });
 
-            modelBuilder.Entity("Cartify.Domain.Entities.UserRelatedEntities.UserWishlist", b =>
+            modelBuilder.Entity("Cartify.Domain.Entities.UserRelatedEntities.Wishlist", b =>
                 {
-                    b.Navigation("WishlistProducts");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

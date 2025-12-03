@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cartify.Persistence.AppData.Configurations
 {
-    internal class UserAddressConfiguration : IEntityTypeConfiguration<UserAddress>
+    internal class AddressConfiguration : IEntityTypeConfiguration<Address>
     {
-        public void Configure(EntityTypeBuilder<UserAddress> builder)
+        public void Configure(EntityTypeBuilder<Address> builder)
         {
             builder.HasKey(u => u.Id);
         }

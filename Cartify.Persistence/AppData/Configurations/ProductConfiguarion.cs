@@ -22,7 +22,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 			.HasForeignKey(x => x.CategoryId);
 
 		builder
-			.HasMany(p => p.WishlistProducts)
+			.HasMany(p => p.WishlistedProducts)
 			.WithOne(p => p.Product)
 			.HasForeignKey(p => p.ProductId);
 	}

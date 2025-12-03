@@ -8,7 +8,7 @@ public class Product : BaseEntity<int>
 	public required string Slug { get; set; }
 	public string? Description { get; set; }
 	public string ImageCover { get; set; }
-	public ICollection<string>? Images { get; set; }
+	public IList<string>? Images { get; set; }
 	public int Sold { get; set; }
 	public double RatingsAverage { get; set; }
 	public int RatingsQuantity { get; set; }
@@ -23,5 +23,5 @@ public class Product : BaseEntity<int>
 	public int CategoryId { get; set; }
 	public Category Category { get; set; }
 
-	public ICollection<WishlistProduct>? WishlistProducts { get; set; } = [];
+	public IList<WishlistedProduct>? WishlistedProducts { get; set; } = [];
 }

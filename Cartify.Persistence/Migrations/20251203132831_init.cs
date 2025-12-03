@@ -13,6 +13,29 @@ namespace Cartify.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Address",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Phone = table.Column<string>(type: "text", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: false),
+                    Details = table.Column<string>(type: "text", nullable: false),
+                    CreatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<string>(type: "text", nullable: false),
+                    UpdatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
+                    DeletedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    DeletedBy = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Brand",
                 columns: table => new
                 {
@@ -55,30 +78,7 @@ namespace Cartify.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserAddress",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Phone = table.Column<string>(type: "text", nullable: false),
-                    City = table.Column<string>(type: "text", nullable: false),
-                    Details = table.Column<string>(type: "text", nullable: false),
-                    CreatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    CreatedBy = table.Column<string>(type: "text", nullable: false),
-                    UpdatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true),
-                    DeletedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    DeletedBy = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserAddress", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserWishlist",
+                name: "Wishlist",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -93,7 +93,7 @@ namespace Cartify.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserWishlist", x => x.Id);
+                    table.PrimaryKey("PK_Wishlist", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -169,13 +169,13 @@ namespace Cartify.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WishlistProduct",
+                name: "WishlistedProduct",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ProductId = table.Column<int>(type: "integer", nullable: false),
-                    UserWishlistId = table.Column<int>(type: "integer", nullable: false),
+                    WishlistId = table.Column<int>(type: "integer", nullable: false),
                     CreatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: false),
                     UpdatedAtUtc = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -185,17 +185,17 @@ namespace Cartify.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WishlistProduct", x => x.Id);
+                    table.PrimaryKey("PK_WishlistedProduct", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WishlistProduct_Product_ProductId",
+                        name: "FK_WishlistedProduct_Product_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_WishlistProduct_UserWishlist_UserWishlistId",
-                        column: x => x.UserWishlistId,
-                        principalTable: "UserWishlist",
+                        name: "FK_WishlistedProduct_Wishlist_WishlistId",
+                        column: x => x.WishlistId,
+                        principalTable: "Wishlist",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -216,39 +216,39 @@ namespace Cartify.Persistence.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserWishlist_UserId",
-                table: "UserWishlist",
+                name: "IX_Wishlist_UserId",
+                table: "Wishlist",
                 column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_WishlistProduct_ProductId",
-                table: "WishlistProduct",
+                name: "IX_WishlistedProduct_ProductId",
+                table: "WishlistedProduct",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WishlistProduct_UserWishlistId",
-                table: "WishlistProduct",
-                column: "UserWishlistId");
+                name: "IX_WishlistedProduct_WishlistId",
+                table: "WishlistedProduct",
+                column: "WishlistId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Address");
+
+            migrationBuilder.DropTable(
                 name: "BrandCategory");
 
             migrationBuilder.DropTable(
-                name: "UserAddress");
-
-            migrationBuilder.DropTable(
-                name: "WishlistProduct");
+                name: "WishlistedProduct");
 
             migrationBuilder.DropTable(
                 name: "Product");
 
             migrationBuilder.DropTable(
-                name: "UserWishlist");
+                name: "Wishlist");
 
             migrationBuilder.DropTable(
                 name: "Brand");

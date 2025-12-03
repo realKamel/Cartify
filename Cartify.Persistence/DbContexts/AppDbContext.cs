@@ -13,7 +13,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration(new BrandConfiguration());
         modelBuilder.ApplyConfiguration(new BrandCategoryConfiguration());
-        modelBuilder.ApplyConfiguration(new UserAddressConfiguration());
-        modelBuilder.ApplyConfiguration(new UserWishlistConfiguration());
+        modelBuilder.ApplyConfiguration(new AddressConfiguration());
+        modelBuilder.ApplyConfiguration(new WishlistConfiguration());
     }
 }

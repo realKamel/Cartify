@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cartify.Persistence.AppData.Configurations
 {
-	internal class UserWishlistConfiguration : IEntityTypeConfiguration<UserWishlist>
+	internal class WishlistConfiguration : IEntityTypeConfiguration<Wishlist>
 	{
-		public void Configure(EntityTypeBuilder<UserWishlist> builder)
+		public void Configure(EntityTypeBuilder<Wishlist> builder)
 		{
 			//the constraints must be fixed
 			builder.HasKey(u => u.Id);
 			builder.HasIndex(u => u.UserId)
 				.IsUnique();
-			
+
 			builder
-				.HasMany(p => p.WishlistProducts)
-				.WithOne(p => p.UserWishlist)
-				.HasForeignKey(p => p.UserWishlistId);
+				.HasMany(w => w.Products)
+				.WithOne(p => p.Wishlist)
+				.HasForeignKey(p => p.WishlistId);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-using Cartify.Domain.Exceptions;
+﻿using Cartify.Domain.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -32,8 +32,11 @@ public class GlobalExceptionHandler(
 		{
 			ValidationException => StatusCodes.Status400BadRequest,
 			SecurityTokenException => StatusCodes.Status401Unauthorized,
+			UnauthorizedAccessException => StatusCodes.Status403Forbidden,
 			NotFoundException => StatusCodes.Status404NotFound,
 			ConflictException => StatusCodes.Status409Conflict,
+			//RateLimitExceededException => StatusCodes.Status429TooManyRequests,
+			NotImplementedException => StatusCodes.Status501NotImplemented,
 			_ => StatusCodes.Status500InternalServerError
 		};
 

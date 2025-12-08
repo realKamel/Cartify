@@ -16,7 +16,7 @@ public class GlobalExceptionHandler(
 	{
 		var logLevel = exception switch
 		{
-			ValidationException or NotFoundException or ConflictException => LogLevel.Warning,
+			BadRequestException or NotFoundException or ConflictException => LogLevel.Warning,
 			_ => LogLevel.Error
 		};
 		logger.Log(
@@ -30,12 +30,12 @@ public class GlobalExceptionHandler(
 
 		httpContext.Response.StatusCode = exception switch
 		{
-			ValidationException => StatusCodes.Status400BadRequest,
+			BadRequestException => StatusCodes.Status400BadRequest,
 			SecurityTokenException => StatusCodes.Status401Unauthorized,
 			UnauthorizedAccessException => StatusCodes.Status403Forbidden,
 			NotFoundException => StatusCodes.Status404NotFound,
 			ConflictException => StatusCodes.Status409Conflict,
-			//RateLimitExceededException => StatusCodes.Status429TooManyRequests,
+			RateLimitExceededException => StatusCodes.Status429TooManyRequests,
 			NotImplementedException => StatusCodes.Status501NotImplemented,
 			_ => StatusCodes.Status500InternalServerError
 		};
@@ -83,10 +83,10 @@ public class GlobalExceptionHandler(
 
 	private static string GetSafeErrorMessage(Exception exception) => exception switch
 	{
-		ValidationException => "The request contains invalid data.",
+		BadRequestException => "The request contains invalid data.",
 		SecurityTokenException => "Authentication failed.",
 		NotFoundException => "The requested resource was not found.",
-		ConflictException => "A conflict occurred while processing your request.",
+		ConflictException => "A error occurred while processing your request.",
 		_ => "An unexpected error occurred."
 	};
 }

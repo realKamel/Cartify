@@ -1,5 +1,5 @@
 namespace Cartify.Domain.Exceptions;
 
-public class ConflictException(string message) : AppBaseException(message)
+public abstract class ConflictException(string message) : AppBaseException(message)
 {
 }

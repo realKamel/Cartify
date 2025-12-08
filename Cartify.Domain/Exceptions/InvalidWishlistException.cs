@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Cartify.Domain.Exceptions;
 
-namespace Cartify.Domain.Exceptions
+public sealed class InvalidWishlistException(string message) : AppBaseException(message)
 {
-	public class InvalidWishlistException(string message) : AppBaseException(message)
-	{
-	}
 }

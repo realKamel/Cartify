@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Cartify.Domain.Exceptions;
 
-namespace Cartify.Domain.Exceptions
+public sealed class WishlistNotFoundException() : NotFoundException("The Request Wishlist not Found")
 {
-	public class WishlistNotFoundException() : NotFoundException("The Request Wishlist not Found")
-	{
-	}
 }

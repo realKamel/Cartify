@@ -24,7 +24,7 @@ public class ProductServices(IUnitOfWork unitOfWork, ILogger<ProductServices> lo
         var orderByDesc = query?.OrderByDesc;
         if (orderBy.HasValue && orderByDesc.HasValue && orderByDesc.Value == orderBy.Value)
         {
-            throw new ValidationException("Can't Have the same field to sort ascending and descending");
+            throw new CartItemNotFoundException("Can't Have the same field to sort ascending and descending");
         }
 
         var specification = new ProductSpecification(query!);
